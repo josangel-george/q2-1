@@ -3,6 +3,7 @@ package com.red.candidate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.bson.types.ObjectId;
@@ -33,7 +34,8 @@ public class Candidate {
 	
 	private boolean completed;
 	
-	private String candidateIP;
+	private List<String> candidateIPs;
+	private List<Date> loginTimes;
 	
 	/** CandidateQuestion# vs Option Selected*/
 	private Map<Integer, String> attempts = new HashMap<>();
@@ -134,11 +136,19 @@ public class Candidate {
 		this.activeStartTime = activeStartTime;
 	}
 
-	public String getCandidateIP() {
-		return candidateIP;
+	public List<String> getCandidateIPs() {
+		return candidateIPs;
 	}
 
-	public void setCandidateIP(String candidateIP) {
-		this.candidateIP = candidateIP;
+	public void setCandidateIPs(List<String> candidateIPs) {
+		this.candidateIPs = candidateIPs;
+	}
+
+	public List<Date> getLoginTimes() {
+		return loginTimes;
+	}
+
+	public void setLoginTimes(List<Date> loginTimes) {
+		this.loginTimes = loginTimes;
 	}
 }

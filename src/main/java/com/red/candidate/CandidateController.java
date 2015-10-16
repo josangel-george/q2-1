@@ -1,11 +1,19 @@
 package com.red.candidate;
 
+import static com.red.MainClass.CIVIL;
+import static com.red.MainClass.CS;
+import static com.red.MainClass.EC;
+import static com.red.MainClass.EEE;
+import static com.red.MainClass.MECH;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -19,12 +27,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.red.SessionExpiredException;
 import com.red.question.QuestionService;
-
-import static com.red.MainClass.EEE;
-import static com.red.MainClass.CS;
-import static com.red.MainClass.EC;
-import static com.red.MainClass.CIVIL;
-import static com.red.MainClass.MECH;
 
 @Controller
 @RequestMapping("/")
@@ -66,13 +68,14 @@ public class CandidateController {
 	
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public String register(HttpSession session, 
-			Candidate candidate, RedirectAttributes redirModel){
+			Candidate candidate, RedirectAttributes redirModel,
+			HttpServletRequest request){
 		
 		System.out.println(candidate);
 		
-		// check if already a candidate exist with 
-		// matching info
-		// 
+		String loginIp = request.getLocalAddr();
+		
+		// check if already a candidate exist with matching info 
 		String name = candidate.getName();
 		String cId = candidate.getCandidateId();
 		
@@ -84,6 +87,26 @@ public class CandidateController {
 			log.info("User already exist. Not adding a new user. Loggin in.");
 			String msg = "User found in db. Recovering previous progress.";
 			redirModel.addFlashAttribute("msg", msg);
+			
+			Candidate c = candidates.get(0);
+			
+			// update login timestamps and ip addresses
+			List<Date> times = c.getLoginTimes();
+			if(times != null){
+				times = new ArrayList<>();
+			}
+			times.add(new Date());
+			c.setLoginTimes(times);
+			
+			List<String> ips = c.getCandidateIPs();
+			if(ips != null){
+				ips = new ArrayList<>();
+			}
+			ips.add(loginIp);
+			c.setCandidateIPs(ips);
+			
+			candidateRepository.save(c);
+			
 		} else {
 			
 			log.info("User is new. Adding new user to db.");
@@ -93,6 +116,16 @@ public class CandidateController {
 			
 			candidate.setActiveStartTime(new Date());
 			candidate.setQuestionSequence(qSeq);
+			
+			// update login timestamps and ip addresses
+			List<Date> times = new ArrayList<>();
+			times.add(new Date());
+			
+			List<String> ips = new ArrayList<>();
+			ips.add(loginIp);
+			
+			candidate.setLoginTimes(times);
+			candidate.setCandidateIPs(ips);
 			
 			candidateRepository.save(candidate);
 		}
@@ -105,12 +138,42 @@ public class CandidateController {
 	}
 	
 	@RequestMapping("logout")
-	public String logout(HttpSession session){
+	public String logout(HttpSession session, 
+			RedirectAttributes redir){
 		
 		session.removeAttribute("candidateName");
 		session.removeAttribute("candidateId");
 		session.removeAttribute("candidateStream");
 		
+		redir.addFlashAttribute("msg", "User Logged out.");
 		return "redirect:/";
 	}
+	
+	@RequestMapping("finalize")
+	public String finalizePage(HttpSession session,
+			RedirectAttributes redir){
+		
+		return "finalize/finalize-confirm";
+	}
+	
+	@RequestMapping(value = "finalize", method = RequestMethod.POST)
+	public String finalize(HttpSession session) throws SessionExpiredException{
+		
+		
+		Candidate c = candidateService.verifySession(session);
+		
+		// get the candidate
+		Candidate candidate = candidateRepository.findByCandidateId(c.getCandidateId()).get(0);
+		
+		candidate.setCompleted(true);
+		
+		candidateRepository.save(candidate);
+		
+		session.removeAttribute("candidateName");
+		session.removeAttribute("candidateId");
+		session.removeAttribute("candidateStream");
+		
+		return "finalize/finalized";
+	}
+	
 }

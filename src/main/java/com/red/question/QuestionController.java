@@ -1,10 +1,20 @@
 package com.red.question;
 
+import static com.red.MainClass.APTI;
+import static com.red.MainClass.CIVIL;
+import static com.red.MainClass.CS;
+import static com.red.MainClass.EC;
+import static com.red.MainClass.EEE;
+import static com.red.MainClass.GK;
+import static com.red.MainClass.MECH;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +23,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.red.admin.AdminService;
-
-import static com.red.MainClass.EEE;
-import static com.red.MainClass.CS;
-import static com.red.MainClass.EC;
-import static com.red.MainClass.CIVIL;
-import static com.red.MainClass.MECH;
-import static com.red.MainClass.APTI;
-import static com.red.MainClass.GK;
 
 @Controller
 @RequestMapping("/admin/question/")
@@ -34,6 +38,8 @@ public class QuestionController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	List<String> categories = new ArrayList<>();
 	
 	private static final Logger log = LoggerFactory.getLogger(QuestionController.class);
 	
@@ -60,22 +66,25 @@ public class QuestionController {
 			return "redirect:/admin/login";
 		}
 		
-		List<String> category = new ArrayList<>();
-		category.add(APTI);
-		category.add(GK);
-		category.add(EC);
-		category.add(EEE);
-		category.add(CIVIL);
-		category.add(MECH);
-		category.add(CS);
+		if(categories.size() <= 0){
+			
+			categories.add(APTI);
+			categories.add(GK);
+			categories.add(EC);
+			categories.add(EEE);
+			categories.add(CIVIL);
+			categories.add(MECH);
+			categories.add(CS);
+		}
 		
-		model.put("category", category);
+		model.put("categories", categories);
 		
 		return "question/add";
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addQuestion(Question question, ModelMap model,
+			@RequestParam("img-file") MultipartFile imageFile,
 			HttpSession session){
 		
 		if(!adminService.verifyAdmin(session)){
@@ -84,12 +93,25 @@ public class QuestionController {
 		}
 
 		// understand the question
+		byte[] image;
+		String modelImage = "";
+		try {
+			image = imageFile.getBytes();
+			byte[] encoded = Base64.encodeBase64(image);
+			modelImage = new String(encoded);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		question.setImage(modelImage);
+		
 		log.info("Request to save question" + question);
 		int questionId = question.getQuestionId();
 		
 		if(qRepo.findByQuestionId(questionId) != null){
 			
 			model.put("msg", "Question Number already exist.");
+			model.put("categories", categories);
 			model.put("question", question);
 			return "question/add";
 		};
@@ -125,6 +147,7 @@ public class QuestionController {
 		}
 		
 		Question q = qRepo.findByQuestionId(questionId);
+		System.out.println("Del Bkup: " + q);
 		qRepo.delete(q);
 		
 		String msg = "Question deleted: " + questionId;

@@ -47,7 +47,7 @@ public class AdminController {
 		
 		log.info("Login Attempt: " + userId + "-" + pass.length());
 		
-		if(userId.equals("thalaiva") && pass.equals("ilayathalapathi")){
+		if(userId.equals("admin") && pass.equals("pass")){
 			
 			session.setAttribute("adminUser", ADMIN);
 			log.info("Login Success.");
@@ -85,7 +85,7 @@ public class AdminController {
 		sb.append("Candidate ID,Name,DOB,Stream,")
 			.append("Correct Answers,APTI,GK,Stream,")
 			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt")
-			.append("\r\n");
+			.append("<br>");
 		
 		for(Candidate c: candidates){
 
@@ -109,14 +109,14 @@ public class AdminController {
 				.append(c.getDob()).append(",")
 				.append(c.getStream()).append(",")
 				.append(c.getCorrectAnswers()).append(",")
-				.append(c.getCorrectAnswerPerCategory().get(APTI))
-				.append(c.getCorrectAnswerPerCategory().get(GK))
-				.append(c.getCorrectAnswerPerCategory().get(c.getStream()))
+				//.append(c.getCorrectAnswerPerCategory().get(APTI))
+				//.append(c.getCorrectAnswerPerCategory().get(GK))
+				//.append(c.getCorrectAnswerPerCategory().get(c.getStream()))
 				.append(noOfAttmpt).append(",")
 				.append(aptiAttempt).append(",")
 				.append(gkAttempt).append(",")
 				.append(streamAttempt).append(",")
-				.append("\r\n");
+				.append("<br>");
 				
 		}
 		

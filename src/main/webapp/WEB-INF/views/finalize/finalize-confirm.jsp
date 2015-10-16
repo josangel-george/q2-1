@@ -6,27 +6,25 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Admin Stats</title>
+<title>Finalize Confirmation</title>
 <link rel="stylesheet" href="<c:url value='/resources/css/material.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
 <script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 <script src="<c:url value='/resources/js/material.js'/>"></script>
-<script src="<c:url value='/resources/js/script.js'/>"></script></head>
+<script src="<c:url value='/resources/js/script.js'/>"></script>
+</head>
 <body>
 
-	<a href="<c:url value='/admin/home'/>">Admin Home</a>
-	<a href="<c:url value='/admin/stats'/>" class="active">Admin Stats</a>
-	<a href="<c:url value='/admin/question/'/>">Question Home</a>
+	Are you sure you want to finalize the test.
+	<form:form>
+		<input type="submit" value="Finalize Test"
+			class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"/>
+	</form:form>
 	
-	<p class="msg">${msg}</p>
-	
-	<br><br>
-	${stats}
-
 </body>
 </html>

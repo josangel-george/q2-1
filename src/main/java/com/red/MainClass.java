@@ -94,6 +94,7 @@ public class MainClass {
         	q.setText(i + " Which amoung is a bird.");
         	q.setOptions(Arrays.asList("Man", "Deer", "Horse", "Hen"));
         	q.setAnswer("D");
+        	q.setImage("");
         	
     		q.setQuestionId(i);
     		q.setCategory(APTI);
@@ -106,6 +107,7 @@ public class MainClass {
         	q.setText(i + " Which amoung is a bird.");
         	q.setOptions(Arrays.asList("Man", "Deer", "Horse", "Hen"));
         	q.setAnswer("D");
+        	q.setImage("");
         	
     		q.setQuestionId(i);
     		q.setCategory(GK);
@@ -118,6 +120,7 @@ public class MainClass {
         	q.setText(i + " > Which <pre>amoung</pre> is a bird.");
         	q.setOptions(Arrays.asList("Man", "Deer", "Horse", "Hen"));
         	q.setAnswer("D");
+        	q.setImage("");
         	
     		q.setQuestionId(i);
     		q.setCategory(CS);

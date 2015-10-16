@@ -20,10 +20,13 @@ public class Question {
 	private String category;     /** EEE, EC, CS, Mechanical, Civil */
 	private String answer;
 	
+	private String image;
+	
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", questionId=" + questionId + ", text=" + text + ", options=" + options
-				+ ", category=" + category + ", answer=" + answer + "]";
+				+ ", category=" + category + ", answer=" + answer 
+				+  ", imagePresent=" + (image != null && image.length() > 0) + "]";
 	}
 
 	public ObjectId getId() {
@@ -72,5 +75,13 @@ public class Question {
 
 	public void setAnswer(String answer) {
 		this.answer = answer;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

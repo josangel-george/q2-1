@@ -17,6 +17,8 @@ import com.red.question.QuestionRepository;
 @Service
 public class CandidateService {
 	
+	private static final long SESSION_EXPIRY_TIME = 50 * 60 * 1_000;
+
 	@Autowired
 	private CandidateRepository candidateRepository; 
 	
@@ -56,28 +58,39 @@ public class CandidateService {
 	public Candidate verifySession(HttpSession session) throws SessionExpiredException{
 	
 		String candidateId = (String) session.getAttribute("candidateId");
+		
+		// if no user in session
 		if(candidateId == null){
 			String msg = "No candidate found in session.";
 			throw new SessionExpiredException(msg);
 		}
 		
+		// If no user in DB which matches that in session!
 		List<Candidate> candidates = candidateRepository.findByCandidateId(candidateId);
 		
 		if(candidates.size() <= 0){
 			
-			String msg = "Candidate found in sessino is not present in DB.";
+			String msg = "Candidate found in session is not present in DB.";
 			throw new SessionExpiredException(msg);
 		}
 		
 		Candidate candidate = candidates.get(0);
 		Long startTime = candidate.getActiveStartTime().getTime();
 		
-		if(new Date().getTime() - startTime >  (50 * 60 * 1_000)){	// 50 mins
+		// If user session expired
+		if(new Date().getTime() - startTime > SESSION_EXPIRY_TIME){	// 50 mins
 			
 			String msg = "Candidate exist in DB. But Session Expired." + candidate.getCandidateId();
 			throw new SessionExpiredException(msg);
-		} else {
-			return candidate;
+		} 
+
+		// If user has already finalized his session
+		if(candidate.isCompleted()){
+			
+			String msg = "Candidate already finalized his test.";
+			throw new SessionExpiredException(msg);
 		}
+		
+		return candidate;
 	}
 }

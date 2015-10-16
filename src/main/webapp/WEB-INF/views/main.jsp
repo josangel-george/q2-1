@@ -7,7 +7,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -25,15 +25,19 @@
 	<!-- Common code -->
 	<header>
 		<a class="navbar-brand" href="#">Mytrah</a>
+		<a	href="<c:url value='/finalize'/>"
+			 class="mdl-button mdl-js-button mdl-js-ripple-effect exam-finalize">
+		  Finalize
+		</a>
 	</header>
 	
 	<div class="body">
 		<!-- Messages from server -->
 		<div class="exam-header">
 			<div class="info inline">
-				<p class="inline">Name: <strong class="blue">${candidateName}</strong></p>
-				<p class="inline">ID: <strong class="blue">${candidateId}</strong></p>
-				<p class="inline">Stream: <strong class="blue">${candidateStream}</strong></p>
+				<p class="inline">Name: <strong class="blue hilight">${candidateName}</strong></p>
+				<p class="inline">ID: <strong class="blue hilight">${candidateId}</strong></p>
+				<p class="inline">Stream: <strong class="blue hilight">${candidateStream}</strong></p>
 				<br><p class="inline">${msg}</p>
 				
 				<div class="attempt-summary">
@@ -41,7 +45,7 @@
 					<c:forEach items="${attemptSlice}" var="attempt">
 					<div class="attempt-summary-entry" id="attemptSummary_${attempt.key}">
 						<p>${attempt.key}:</p> 
-						<strong class="blue">${attempt.value}</strong>
+						<strong class="blue hilight">${attempt.value}</strong>
 					</div>
 					</c:forEach>
 				</div>
@@ -51,8 +55,10 @@
 			<nav class="pull-right inline page-nav">
 			  <ul class="pagination">
 			    <li>
+			      <div class="mdl-tooltip" for="prevPage">Previous Page</div>
 			      <c:if test="${currentPage > 1 }">
-				      <a href="<c:url value='/exam/${currentPage - 1}'/>" aria-label="Previous">
+				      <a href="<c:url value='/exam/${currentPage - 1}'/>" 
+				      			id="prevPage" aria-label="Previous">
 				        <span aria-hidden="true">&lt;</span>
 				      </a>
 			      </c:if>
@@ -62,8 +68,10 @@
 			    		<a href="<c:url value='/exam/${page}'/>">${page}</a></li>
 			    </c:forEach>
 			    <li>
+			       <div class="mdl-tooltip" for="nextPage">Next Page</div>
 			       <c:if test="${currentPage < 10}">
-				      <a href="<c:url value='/exam/${currentPage + 1}'/>" aria-label="Next">
+				      <a href="<c:url value='/exam/${currentPage + 1}'/>" 
+				      			id="nextPage" aria-label="Next">
 				        <span aria-hidden="true">&gt;</span>
 				      </a>
 				   </c:if>
@@ -75,11 +83,15 @@
 		<div class="question-body">
 			<c:forEach items="${questions}" var="question" varStatus="qCtr">
 			
-			<div class="question mdl-grid">
+			<div class="question mdl-grid mdl-card mdl-shadow--2dp">
 				<p class="mdl-cell  mdl-cell--1-col" id="saveStatus_${question.key}"></p>
 				<div class="mdl-cell">
-					<div class="question-text">
-						<p>${question.key}. ${question.value.text}</p>
+					<div class="question-text ">
+						<p><strong>${question.key}</strong>. ${question.value.text}</p>
+						<c:if test="${fn:length(question.value.image) gt 1}">
+							<img class="question-image"
+								src="data:image/jpeg;base64,${question.value.image}" width="200" height="200">
+						</c:if>
 					</div>
 					<div class="question-options">
 						<c:set var="prevSelOpt" value="${optionSelected[question.key]}"/>

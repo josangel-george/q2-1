@@ -12,7 +12,10 @@ compile the Bootstrap using Atom project
 	- fetch the question and answer from cache whenever needed.
 	
 - Log IP Address of Candidate
-
+- REMOVE Exception
+- Copy header around
+- find a mongo db editor
+- update disclaimer
 
 // Aux function
 - get list of all users currently registered
