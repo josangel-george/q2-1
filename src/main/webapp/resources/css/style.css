@@ -1,14 +1,7 @@
 @CHARSET "ISO-8859-1";
 
-.border{border: 1px solid gray;}
-.inline{display: inline-block;}
-div.body{margin-top: 60px;}
-
-.form label{margin: 10px; display: block;}
-.form *{margin-left: 20px;}
-
-.form textarea{width: 500px; height: 200px;}
-.msg{color: blue; font-weight: bold;}
+div.body{margin-top: 48px;}
+p{margin-bottom: 10px; display: inline-block;}
 
 table{border-collapse: collapse;}
 table.border,
@@ -16,4 +9,47 @@ table.border td,
 table.border tr,
 table.border th{border: 1px solid gray;}
 
+.border{border: 1px solid gray;}
+.inline{display: inline-block;}
+.block{display: block;}
+.f-14{font-size: 14px;}
+.head{font-weight: bold; font-size: 14px;}
+
+.form label{margin: 10px; display: block;}
+.form *{margin-left: 20px;}
+.form textarea{width: 500px; height: 200px;}
+.msg{color: #3F51B5; font-weight: bold;}
+.success{font-size: 11px; font-weight: bold; color: #4CAF50;}
+.warning{font-size: 11px; font-weight: bold; color: #FF9800;}
+.blue{color: #3F51B5}
+
 a.active{background: #3F51B5; color: white; font-weight: bold;}
+
+/* --- header --- */
+header{width: 100%; border: 1px solid #3F51B5; height: 35px; top: 0; position: fixed; background: #3F51B5}
+header .navbar-brand{margin: 8px 32px; position: fixed; font-size: 21px; text-decoration: none; color: white;}
+
+pre { display: inline-block; padding: 2px 5px; margin: 0px 3px 16px; color: #333;
+    word-break: break-all; word-wrap: break-word; background-color: #f5f5f5;}
+pre.block{display: block;}
+
+.question-text{display: inline-flex; width: 800px;}
+.question-text > p,
+.question-text > pre,
+.question-text > strong,
+.question-text > i {font-size: 16px;}
+.question{margin-left: 10px;}
+
+.page-nav{margin-right: 20px;}
+.page-nav *{display: inline-block;}
+.page-nav a {text-decoration: none;}
+.page-nav a:hover{text-decoration: underline;}
+.page-nav ul > li{padding: 2px 7px;}
+.page-nav li.active{border: 1px solid #3F51B5; background: #3F51B5;}
+.page-nav li.active a{color: white}
+.page-nav ul {line-height: 1.5; margin: 0;}
+.pull-right{float: right;}
+
+.attempt-summary-entry{padding-right: 10px; display: inline-block;}
+.exam-header > .info{padding-left: 20px;}
+.exam-header > .info > p{padding-right: 10px;}

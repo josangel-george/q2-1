@@ -57,13 +57,16 @@ public class CandidateService {
 	
 		String candidateId = (String) session.getAttribute("candidateId");
 		if(candidateId == null){
-			throw new SessionExpiredException();
+			String msg = "No candidate found in session.";
+			throw new SessionExpiredException(msg);
 		}
 		
 		List<Candidate> candidates = candidateRepository.findByCandidateId(candidateId);
 		
 		if(candidates.size() <= 0){
-			throw new SessionExpiredException();
+			
+			String msg = "Candidate found in sessino is not present in DB.";
+			throw new SessionExpiredException(msg);
 		}
 		
 		Candidate candidate = candidates.get(0);
@@ -71,7 +74,8 @@ public class CandidateService {
 		
 		if(new Date().getTime() - startTime >  (50 * 60 * 1_000)){	// 50 mins
 			
-			throw new SessionExpiredException();
+			String msg = "Candidate exist in DB. But Session Expired." + candidate.getCandidateId();
+			throw new SessionExpiredException(msg);
 		} else {
 			return candidate;
 		}

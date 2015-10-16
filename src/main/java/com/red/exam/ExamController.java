@@ -2,6 +2,7 @@ package com.red.exam;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -53,9 +54,11 @@ public class ExamController {
 		
 		int qnSize = allQns.size();
 		
+		// first question in requested page
 		int firstQn = (pageNo - 1) * qnPerPage + 1;
 		firstQn = firstQn > qnSize ? qnSize : firstQn;
 		
+		// last question in requested page
 		int lastQn = (pageNo * qnPerPage);
 		lastQn = lastQn > qnSize ? qnSize : lastQn;
 		
@@ -65,6 +68,15 @@ public class ExamController {
 				Question q = questionService.findByQuestionId(allQns.get(i));
 				subQns.put(i, q);
 			}
+		}
+		
+		// loop to find attempt summary
+		Map<Integer, String> attemptMap = candidate.getAttempts();
+		Map<Integer, String> attemptSlice = new TreeMap<>();
+		for(int i = firstQn; i <= lastQn; i++){
+			
+			String ans = attemptMap.get(i);
+			attemptSlice.put(i, getStrOption(ans));
 		}
 		
 		String msg = new StringBuilder().append("Inside ").append(pageNo)
@@ -79,6 +91,8 @@ public class ExamController {
 		// send questions to user
 		model.put("questions", subQns);
 		model.put("currentPage", pageNo);
+		model.put("attemptSlice", attemptSlice);
+		model.put("optionSelected", candidate.getAttempts());
 		model.put("pageCount", 10);		// No of pagination pages to be shown
 		
 		return "main";
@@ -88,7 +102,7 @@ public class ExamController {
 	// =========================  REST  ==================================
 	// ===================================================================
 	
-	@RequestMapping("1/saveProgress/{questionNo}/{option}")
+	@RequestMapping("/saveProgress/{questionNo}/{option}")
 	public ResponseEntity<Void> saveProgreess(@PathVariable int questionNo,
 					@PathVariable String option,
 					HttpSession session) throws SessionExpiredException{
@@ -105,12 +119,40 @@ public class ExamController {
 		// - update correctAnswerPerCategory;
 		// - update attempts
 		
-		log.info("Option update: " + candidate.getCandidateId() + " q:" + questionNo + " o" + option);
+		String msg = "Option update: " + candidate.getCandidateId();
+		msg += " q:" + questionNo + " o" + option;
+		msg += "User: " + candidate.getCandidateId();
+		
+		log.info(msg);
 		
 		candidateRepository.save(candidate);
 		// user.getAttempts.get(questionNo).set(option);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-
+	
+	// ------------------------ AUX
+	/**
+	 * Convert Numeric Options to String options
+	 * */
+	private String getStrOption(String option){
+		
+		if(option == null){
+			return "-";
+		}
+		
+		if(option.equals("1")){
+			return "A";
+		} else if(option.equals("2")){
+			return "B";
+		} else if(option.equals("3")){
+			return "C";
+		} else if(option.equals("4")){
+			return "D";
+		} else if(option.equals("5")){
+			return "E";
+		} else {
+			return "-";
+		}
+	}
 }

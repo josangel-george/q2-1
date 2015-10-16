@@ -104,8 +104,12 @@ public class CandidateController {
 		return "redirect:/exam/1";
 	}
 	
-	@RequestMapping("/logout")
-	public String logout(){
+	@RequestMapping("logout")
+	public String logout(HttpSession session){
+		
+		session.removeAttribute("candidateName");
+		session.removeAttribute("candidateId");
+		session.removeAttribute("candidateStream");
 		
 		return "redirect:/";
 	}

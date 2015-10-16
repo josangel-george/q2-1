@@ -18,7 +18,7 @@
 <script src="<c:url value='/resources/js/script.js'/>"></script></head>
 <body>
 
-Add question
+	<p class="head">Add question</p>
 
 	<p class="msg">${msg}</p>
 	
@@ -43,6 +43,15 @@ Add question
 				<form:option value="E">E</form:option>
 			</form:select></label>
 		<input type="submit"/>
+		<pre class="f-14">&lt; &gt; &le; &ge; &plusmn; &ne; &divide; &times; &minus;
+&radic; &#8731; &#8732; &#8725; &#8734; &#8756;
+&sup1; &sup2; &sup3; &#8308; &#8305; &#8319; &#8336; &#8337;
+&#8338; &#7525; &#7526; &#7527; &#7529; 
+&#956; &#963; &#967; &#8721; &#8719; &#8720;
+&#181; &#176; &#8747; &#8710; &#8704; &#8745; &#8746;
+&#8712; &#8741; &#8739; &#8736; &#8735;
+&#8869; &#8800; &#8776; &#8764; &#8773; &#8816;
+&#8817; &#8727; </pre>
 	</form:form>
 	
 </body>

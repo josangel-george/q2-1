@@ -15,7 +15,9 @@ public class AdviceController {
 	public ModelAndView handleSessionExpirationException(SessionExpiredException e){
 		
 		log.info("Handled sessionExpirationException, redirecting to register page.");
-		log.info("No candidateId found in session. redirecting to register page");
+
+		log.error(e.getMessage());
+		e.printStackTrace();
 		
 		return new ModelAndView("redirect:/register");
 	}
