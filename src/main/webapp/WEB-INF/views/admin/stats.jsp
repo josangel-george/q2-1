@@ -23,12 +23,12 @@
 	<a href="<c:url value='/admin/home'/>">Admin Home</a>
 	<a href="<c:url value='/admin/stats'/>" class="active">Admin Stats</a>
 	<a href="<c:url value='/admin/question/'/>">Question Home</a>
-	
-	<p class="msg">${msg}</p>
-	
 	<a href="download">
 		Download Stats {Get file with timestamp}
 	</a>
+	
+	<p class="msg">${msg}</p>
+	
 	
 	<br><br>
 	<pre>${stats}</pre>

@@ -21,19 +21,46 @@
 </head>
 <body>
 
-	<p class="msg">${msg}</p>
-	<p class="head">View Question</p>
-	
-	<p>ID		: ${question.id}</p>
-	<p>Question ID: ${question.questionId }</p>
-	<p>Text	: ${question.text}</p>
-	<p>Category: ${question.category}</p>
-	<p>Answer  : ${question.answer}</p>
-	<p>Option A: ${question.options[0]}</p>
-	<p>Option B: ${question.options[1]}</p>
-	<p>Option C: ${question.options[2]}</p>
-	<p>Option D: ${question.options[3]}</p>
-	<p>Option E: ${question.options[4]}</p>
+	<p class="msg block">${msg}</p>
+	<p class="head block">View Question</p>
+
+	<div class="question mdl-grid mdl-card mdl-shadow--2dp">
+	<p class="mdl-cell  mdl-cell--1-col" id="saveStatus_1"></p>
+	<div class="mdl-cell">
+		<div class="question-text ">
+			<p><strong>1</strong>. ${question.text}</p>
+			<c:if test="${fn:length(question.image) gt 1}">
+				<img class="question-image"
+					src="data:image/jpeg;base64,${question.image}" width="200" height="200">
+			</c:if>
+		</div>
+		<div class="question-options">
+			<c:set var="prevSelOpt" value="${optionSelected[1]}"/>
+			<c:forEach items="${question.options}" var="option" varStatus="oCtr">
+			<label class="question-option block mdl-radio mdl-js-radio" 
+					for="option_${1}_${oCtr.count}">
+					
+				<input type="radio" name="option_1" value="${option}"
+					id="option_1_${oCtr.count}"
+					class="mdl-radio__button"
+					${prevSelOpt eq oCtr.count ? 'checked="checked"' : ''}/>
+					
+					<span class="mdl-radio__label">
+						<c:if test="${oCtr.count == 1}">A. </c:if>
+						<c:if test="${oCtr.count == 2}">B. </c:if>
+						<c:if test="${oCtr.count == 3}">C. </c:if>
+						<c:if test="${oCtr.count == 4}">D. </c:if>
+						<c:if test="${oCtr.count == 5}">E. </c:if>
+						${option}
+					</span>
+			</label>
+			</c:forEach><br>
+			<p>ID: ${question.questionId}</p><br>
+			<p>Answer: ${question.answer}</p><br>
+			<p>Category: ${question.category}</p>
+		</div>
+	</div>
+</div>
 	
 </body>
 </html>

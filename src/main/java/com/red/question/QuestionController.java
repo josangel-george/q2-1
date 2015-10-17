@@ -105,6 +105,10 @@ public class QuestionController {
 		
 		question.setImage(modelImage);
 		
+		if(question.getOptions().get(4) == null || question.getOptions().get(4).isEmpty()){
+			question.getOptions().remove(4);
+		}
+		
 		log.info("Request to save question" + question);
 		int questionId = question.getQuestionId();
 		

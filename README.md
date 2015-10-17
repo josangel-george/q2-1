@@ -1,10 +1,4 @@
 ToDO
-- REMOVE Exception
-- Copy header around
-- update disclaimer
-- js always saying save!! | its fine
-- change material css to blue-red
-
 - download stats with timestamp
 - able to load different question sets
 - candidate summary put in card
@@ -47,3 +41,9 @@ x find a mongo db editor
 x change font to Roboto
 x Log IP Address of Candidate
 x make all the resources local
+x REMOVE Exception
+x Copy header around
+x update disclaimer
+x js always saying save!! | its fine
+x change material css to blue-red
+

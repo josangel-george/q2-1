@@ -47,7 +47,6 @@ public class CandidateController {
 		
 		String candidateId = candidateService.verifySession(session);
 		if(!verifyReturn(candidateId)){
-			redir.addFlashAttribute("msg", "User not valid. Please register. " + candidateId);
 			return "redirect:/register";
 		}
 		
