@@ -24,7 +24,7 @@ Add question
 	<p class="msg">${msg}</p>
 	
 	<form:form  commandName="question" modelAttribute="question"
-		method="post" id="adminLogin" class="form" enctype="multipart/form-data" 
+		method="post" id="adminLogin" class="form-form" enctype="multipart/form-data" 
 			action="/admin/question/add">
 			
 		<label>ID: * <form:input path="questionId" required="required"/></label>

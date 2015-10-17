@@ -113,24 +113,78 @@ public class ExamController {
 		// Integer qId = candidateService.getQuestionId(questionNo, candidate);
 		// Question q = questionService.findByQuestionId(qId);
 		
-		candidate.getAttempts().put(questionNo, option);
-		// do lot of other things
-		// - update correctAnswer#
-		// - update correctAnswerPerCategory;
-		// - update attempts
 		
-		String msg = "Option update: " + candidate.getCandidateId();
-		msg += " q:" + questionNo + " o" + option;
-		msg += "User: " + candidate.getCandidateId();
+		int questionId = candidateService.getQuestionId(questionNo, candidate);
+		Question q = questionService.findByQuestionId(questionId);
 		
+		Candidate resultCandidate = evaluateStats(candidate, questionNo, option, q);
+		
+		resultCandidate.getAttempts().put(questionNo, option);
+		
+		String msg = "Option update: " + resultCandidate.getCandidateId();
+		msg += " q:" + questionNo + " o: " + option;
+		msg += "correctAns:" + resultCandidate.getCorrectAnswers(); 
+		msg += "correctPerCat" + resultCandidate.getCorrectAnswerPerCategory();		
 		log.info(msg);
 		
-		candidateRepository.save(candidate);
+		candidateRepository.save(resultCandidate);
 		// user.getAttempts.get(questionNo).set(option);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+	private Candidate evaluateStats(Candidate candidate, int questionNo, String option, Question q) {
+
+		String prevAns = getStrOption(candidate.getAttempts().get(questionNo)); 
+		String newAns = getStrOption(option);
+		String correctAns = q.getAnswer();
+		String category = q.getCategory();
+		
+		log.trace(prevAns + newAns + correctAns + category);
+		
+		if(prevAns == null & newAns.equals(correctAns)){
+			// increment
+			candidate.setCorrectAnswers(candidate.getCorrectAnswers() + 1);
+			
+			Integer prevCount = candidate.getCorrectAnswerPerCategory().get(category);
+			if(prevCount == null){prevCount = 0;}
+			candidate.getCorrectAnswerPerCategory()
+				.put(category, prevCount + 1);
+			
+		} else if(prevAns == null && !newAns.equals(correctAns)){
+			// do nothing
+		} else if(prevAns != null && newAns.equals(correctAns)){
+			if(prevAns.equals(correctAns)){
+				//do nothing
+			} else {
+				// increment
+				candidate.setCorrectAnswers(candidate.getCorrectAnswers() + 1);
+				
+				Integer prevCount = candidate.getCorrectAnswerPerCategory().get(category);
+				if(prevCount == null){prevCount = 0;}
+				candidate.getCorrectAnswerPerCategory()
+					.put(category, prevCount + 1);
+				
+			}
+		} else if(prevAns != null && !newAns.equals(correctAns)){
+			
+			if(prevAns.equals(correctAns)){
+				// decrement
+				candidate.setCorrectAnswers(candidate.getCorrectAnswers() - 1);
+				
+				Integer prevCount = candidate.getCorrectAnswerPerCategory().get(category);
+				if(prevCount == null){prevCount = 0;}
+				candidate.getCorrectAnswerPerCategory()
+					.put(category, prevCount - 1);
+				
+			} else {
+				// do nothing
+			}
+		}
+		
+		return candidate;
+	}
+
 	// ------------------------ AUX
 	/**
 	 * Convert Numeric Options to String options

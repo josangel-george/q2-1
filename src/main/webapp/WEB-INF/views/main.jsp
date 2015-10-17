@@ -35,9 +35,9 @@
 		<!-- Messages from server -->
 		<div class="exam-header">
 			<div class="info inline">
-				<p class="inline">Name: <strong class="blue hilight">${candidateName}</strong></p>
-				<p class="inline">ID: <strong class="blue hilight">${candidateId}</strong></p>
-				<p class="inline">Stream: <strong class="blue hilight">${candidateStream}</strong></p>
+				<p class="inline">Name: <strong class="blue-text hilight">${candidateName}</strong></p>
+				<p class="inline">ID: <strong class="blue-text hilight">${candidateId}</strong></p>
+				<p class="inline">Stream: <strong class="blue-text hilight">${candidateStream}</strong></p>
 				<br><p class="inline">${msg}</p>
 				
 				<div class="attempt-summary">
@@ -45,7 +45,7 @@
 					<c:forEach items="${attemptSlice}" var="attempt">
 					<div class="attempt-summary-entry" id="attemptSummary_${attempt.key}">
 						<p>${attempt.key}:</p> 
-						<strong class="blue hilight">${attempt.value}</strong>
+						<strong class="blue-text hilight">${attempt.value}</strong>
 					</div>
 					</c:forEach>
 				</div>

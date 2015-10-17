@@ -7,6 +7,7 @@
 	
     $(document).ready(function(){
     	
+    	// Option on change
     	$("input[name^=option_]").change(function(){
     		var id = this.id;
     		var split = id.split("_");
@@ -46,6 +47,30 @@
     			return 'D';
     		} else if(option === '5'){
     			return 'E';
+    		}
+    	}
+    	
+    	// Registration ---
+    	updateEl($("#registerCandidate input[type=date]"));
+    	updateEl($("#registerCandidate select"));
+    	
+    	$("#registerCandidate input[type=date]").change(function(){
+    		updateEl($(this));
+    	});
+    	
+    	$("#registerCandidate select").change(function(){
+    		updateEl($(this));
+    	});
+    	
+    	function updateEl(el){
+    		if(el.val()){
+    			el.addClass("blue");
+    			el.removeClass("red");
+    			el.removeClass("text-gray");
+    		} else {
+    			el.addClass("text-gray");
+    			el.addClass("red");
+    			el.removeClass("blue");
     		}
     	}
     });

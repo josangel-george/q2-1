@@ -22,7 +22,7 @@
 	<p class="msg">${msg}</p>
 
 	<form:form method="post" commandName="admin" modelAttribute="admin"
-		id="adminLogin" class="form">
+		id="adminLogin" class="form-form">
 		<label>User: <form:input path="userId"/></label>
 		<label>Pass: <form:input path="pass" type="password"/></label>
 		<input type="submit"/>

@@ -26,8 +26,8 @@ public class Candidate {
 	
 	private Date activeStartTime;
 
-	private int correctAnswers;
-	private Map<String, Integer> correctAnswerPerCategory;
+	private int correctAnswers = 0;
+	private Map<String, Integer> correctAnswerPerCategory = new HashMap<>();
 	
 	/** TreeMap of [questionNo vs questionId]*/
 	private LinkedHashMap<Integer, Integer> questionSequence;

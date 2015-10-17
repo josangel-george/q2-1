@@ -25,53 +25,52 @@
 		<a class="navbar-brand" href="#">Mytrah</a>
 	</header>
 
-	<form:form class = "form body" method="post" commandName="candidate" modelAttribute="candidate"
-		id="registerCandidate">
+	<form:form method="post" commandName="candidate" modelAttribute="candidate"
+		id="registerCandidate" class = "form body mdl-card mdl-shadow--2dp">
 		
-		<div class="mdl-grid register-form">
-			<div class="mdl-cell mdl-cell--4-col">
-				<label for="name">User Name:</label>
+		
+		<div class="mdl-card__title mdl-card--border">
+		    <h2 class="mdl-card__title-text">Registration</h2>
+		</div>
+  
+		<div class="section-center mdl-grid">
+			<div class="mdl-textfield mdl-js-textfield  block mdl-cell mdl-cell--12-col-desktop">
+			  <form:input path="name" class="mdl-textfield__input" required="required"/>
+		      <label class="mdl-textfield__label" for="name">Name...</label>
+		      <div class="mdl-tooltip" for="name">Please enter your name.</div>
+		    </div>
+		    <div class="mdl-textfield mdl-js-textfield  block mdl-cell mdl-cell--12-col-desktop">
+		      <form:input path="candidateId" class="mdl-textfield__input" required="required"/>
+		      <label class="mdl-textfield__label" for="candidateId">ID...</label>
+		      <div class="mdl-tooltip" for="candidateId">Please enter ID.</div>
+		    </div>
+		    <div class="mdl-textfield mdl-js-textfield  block mdl-cell mdl-cell--12-col-desktop">
+		      <form:input type="date" path="dob" required="required" class="red"/>
+		      <div class="mdl-tooltip" for="dob">Please select Date of birth.</div>
+		    </div>
+		    <div class="mdl-textfield mdl-js-textfield  block mdl-cell mdl-cell--12-col-desktop">
+				<form:select path="stream" required="required" class="red">
+					<form:option value="" disabled="disabled"> -- Select Stream -- </form:option>
+					<form:options items="${streams}"></form:options>
+				</form:select>
+				<div class="mdl-tooltip" for="stream">Please select your stream.</div>
 			</div>
-			<div class="mdl-cell mdl-cell--4-col">
-				<form:input path="name" required="required" class="mdl-textfield__input"/>
-				<label class="mdl-textfield__label" for="name">Name...</label>
-			</div>
-			
-			<div class="mdl-cell mdl-cell--4-col">
-				<label for="candidateId" class="mdl-cell mdl-cell--4-col">User ID:</label>
-			</div>
-			<div class="mdl-cell mdl-cell--4-col ">
-				<form:input path="candidateId" required="required"
-					class="mdl-cell mdl-cell--4-col"/>
-			</div>
-			
-			<div class="mdl-cell mdl-cell--4-col">
-				<label for="dob" class="mdl-cell mdl-cell--4-col">Birth Date:</label>
-			</div>
-			<div class="mdl-cell mdl-cell--4-col ">
-				<form:input type="date" path="dob" required="required"
-					class="mdl-cell mdl-cell--4-col"/>
-			</div>
-			
-			<div class="mdl-cell mdl-cell--4-col">
-				<label for="stream" class="mdl-cell mdl-cell--4-col">Stream:</label> 
-			</div>
-			<div class="mdl-cell mdl-cell--4-col ">
-				<form:select path="stream" required="required"
-					class="mdl-cell mdl-cell--4-col">
-				<form:option value=""> -- Select Stream -- </form:option>
-				<form:options items="${streams}"></form:options>
-			</form:select>
-			</div>
-			<input class="mdl-cell mdl-cell--2-col" type="submit"/>
+		<input type="submit" value="Register" 
+			class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored mdl-cell mdl-cell--12-col-desktop"/>
 		</div>
 	</form:form>
 	
 	<div>
-		<pre class="w-100 disclaimer">
+		<pre class="instrictions">
 		Disclaimer
 			- ID should match the exact ID of candidate. else test will be render invalid.
 			- While leaving the hall ensure that session is finalized.
+		Question Pattern
+			- Total 50 questions
+			- First 25 Questions based on 'Aptitude'
+			- Next 5 from 'General Knowledge'
+			- Remaining 20 based on your stream
+			- Separate weightage is given for each section.
 		</pre> 
 	</div>
 </body>

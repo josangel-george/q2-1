@@ -3,10 +3,10 @@ package com.red.admin;
 import static com.red.MainClass.APTI;
 import static com.red.MainClass.GK;
 import static com.red.MainClass.MAX_QNS;
-
 import static com.red.admin.AdminService.ADMIN;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -82,7 +82,7 @@ public class AdminController {
 		List<Candidate> candidates = candidateRepository.findAll();
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("Candidate ID,Name,DOB,Stream,")
+		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Stream,")
 			.append("Correct Answers,APTI,GK,Stream,")
 			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt")
 			.append("<br>");
@@ -94,7 +94,9 @@ public class AdminController {
 			int gkAttempt = 0;
 			int streamAttempt = 0;
 			
-			for(int i= 1; i <= MAX_QNS; i++){
+			Set<Integer> attempts = c.getAttempts().keySet();
+			
+			for(Integer i: attempts){
 				if(i > 1 && i <= 25){
 					aptiAttempt++;
 				} else if(i > 26 && i <= 30){
@@ -109,13 +111,13 @@ public class AdminController {
 				.append(c.getDob()).append(",")
 				.append(c.getStream()).append(",")
 				.append(c.getCorrectAnswers()).append(",")
-				//.append(c.getCorrectAnswerPerCategory().get(APTI))
-				//.append(c.getCorrectAnswerPerCategory().get(GK))
-				//.append(c.getCorrectAnswerPerCategory().get(c.getStream()))
+				.append(c.getCorrectAnswerPerCategory().get(APTI)).append(",")
+				.append(c.getCorrectAnswerPerCategory().get(GK)).append(",")
+				.append(c.getCorrectAnswerPerCategory().get(c.getStream())).append(",")
 				.append(noOfAttmpt).append(",")
 				.append(aptiAttempt).append(",")
 				.append(gkAttempt).append(",")
-				.append(streamAttempt).append(",")
+				.append(streamAttempt)
 				.append("<br>");
 				
 		}

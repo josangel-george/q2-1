@@ -1,5 +1,7 @@
 @CHARSET "ISO-8859-1";
 
+body{width: 100%; height: 100%; overflow: auto;}
+
 div.body,
 form.body{margin-top: 48px;}
 p{margin-bottom: 10px; display: inline-block;}
@@ -20,17 +22,18 @@ table.border th{border: 1px solid gray;}
 .msg{color: #3F51B5; font-weight: bold;}
 .success{font-size: 11px; font-weight: bold; color: #4CAF50;}
 .warning{font-size: 11px; font-weight: bold; color: #FF9800;}
-.blue{color: #3F51B5}
-.blue.hilight{background: rgba(63, 81, 181, 0.14); padding: 2px;}
-
-.form label{margin: 10px; display: block;}
-.form *{margin-left: 20px;}
-.form textarea{width: 500px; height: 200px;}
+.blue-text{color: #3F51B5}
+.blue-text.hilight{background: rgba(63, 81, 181, 0.14); padding: 2px;}
 
 a.active{background: #3F51B5; color: white; font-weight: bold;}
 
+.form-form label{margin: 10px; display: block;}
+.form-form *{margin-left: 20px;}
+.form-form textarea{width: 500px; height: 200px;}
+
 /* --- header --- */
 header{width: 100%; border: 1px solid #3F51B5; height: 35px; top: 0; position: fixed; background: #3F51B5;
+	z-index: 100;
 	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);}
 header .navbar-brand{margin: 8px 32px; position: fixed; font-size: 21px; text-decoration: none; color: white;}
 
@@ -59,9 +62,30 @@ pre.block{display: block;}
 .exam-header > .info{padding-left: 20px;}
 .exam-header > .info > p{padding-right: 10px;}
 .exam-finalize{float: right; color: white; font-size: 12px;     margin-right: 50px;}
-.hilight{background: rgba(63, 81, 181, 0.14); padding: 2px;}
 
 img.question-image{display: block; height: 250px; width: auto; padding: 20px;}
 
 
-.register-form{width: 600px; margin: auto;}
+
+
+.instrictions{width: calc(100% - 10px); margin: auto;}
+
+/* Registeration from */
+.text-gray{color: rgba(0,0,0, 0.26);}
+#registerCandidate input.blue[type=date],
+#registerCandidate select.blue{border: 0px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); padding: 2px;	width: 100%;}
+#registerCandidate input.blue[type=date]:focus,
+#registerCandidate select.blue:focus{outline: 0px; border-bottom: 2px solid rgb(63,81,181);}
+
+#registerCandidate input.red[type=date],
+#registerCandidate select.red{border: 0px; border-bottom: 1px solid rgb(222, 50, 38); padding: 2px;	width: 100%;}
+#registerCandidate input.red[type=date]:focus,
+#registerCandidate select.red:focus{outline: 0px; border-bottom: 2px solid rgb(222, 50, 38);}
+
+#registerCandidate *{font-size: 14px;}
+#registerCandidate h2{font-size: 18px;}
+#registerCandidate input[type=submit]{margin-top: 10px;}
+#registerCandidate{width: 450px; margin-bottom: 20px; margin-left: auto; margin-right: auto; padding: 25px;}
+
+.mdl-cell{margin: -4px;}
+.mdl-card__title{padding: 10px 2px;}
