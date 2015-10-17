@@ -26,5 +26,8 @@
 		
 	<p class="msg">${msg}</p>
 		
+	<br><br>
+	${stats}
+	
 </body>
 </html>

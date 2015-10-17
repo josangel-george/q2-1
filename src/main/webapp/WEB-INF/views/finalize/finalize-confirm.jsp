@@ -20,10 +20,17 @@
 </head>
 <body>
 
+	<header>
+		<a class="navbar-brand" href="#">Mytrah</a>
+	</header>
+	
 	Are you sure you want to finalize the test.
-	<form:form>
-		<input type="submit" value="Finalize Test"
-			class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"/>
+	<form:form class="body finalize-test">
+		<pre class="danger block f-16">
+			By clicking the "COMPLETE TEST" button you agree that your test is completed.
+			Upon completion no more further updates will be allowed.</pre>
+		<input type="submit" value="Complete Test"
+			class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent finalize-test-btn"/>
 	</form:form>
 	
 </body>

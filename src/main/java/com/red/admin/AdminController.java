@@ -2,7 +2,6 @@ package com.red.admin;
 
 import static com.red.MainClass.APTI;
 import static com.red.MainClass.GK;
-import static com.red.MainClass.MAX_QNS;
 import static com.red.admin.AdminService.ADMIN;
 
 import java.util.List;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.red.candidate.Candidate;
 import com.red.candidate.CandidateRepository;
+import com.red.question.QuestionService;
 
 @Controller
 @RequestMapping("/admin/")
@@ -30,6 +30,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private QuestionService questionService;
 	
 	private static final Logger log = LoggerFactory.getLogger(CandidateRepository.class);
 
@@ -47,7 +50,7 @@ public class AdminController {
 		
 		log.info("Login Attempt: " + userId + "-" + pass.length());
 		
-		if(userId.equals("admin") && pass.equals("pass")){
+		if(userId.equals("red") && pass.equals("ilayathalapathi")){
 			
 			session.setAttribute("adminUser", ADMIN);
 			log.info("Login Success.");
@@ -58,20 +61,8 @@ public class AdminController {
 			return "redirect:/admin/login";
 		}
 	}
-	
-	@RequestMapping(value ="home")
-	public String adminHome(HttpSession session){
-		
-		if(!adminService.verifyAdmin(session)){
-			log.info("Not Logged in, redirecting to login");
-			return "redirect:/admin/login";
-		}
-		
-		return "admin/home";
-	}
-	
 
-	@RequestMapping(value = "stats")
+	@RequestMapping(value = "home")
 	public String getStats(HttpSession session, ModelMap model){
 		
 		if(!adminService.verifyAdmin(session)){
@@ -89,41 +80,98 @@ public class AdminController {
 		
 		for(Candidate c: candidates){
 
-			int noOfAttmpt = c.getAttempts().size();
-			int aptiAttempt = 0;
-			int gkAttempt = 0;
-			int streamAttempt = 0;
-			
-			Set<Integer> attempts = c.getAttempts().keySet();
-			
-			for(Integer i: attempts){
-				if(i > 1 && i <= 25){
-					aptiAttempt++;
-				} else if(i > 26 && i <= 30){
-					gkAttempt++;
-				} else if(i > 31){
-					streamAttempt++;
-				}
-			}
-			
-			sb.append(c.getCandidateId()).append(",")
-				.append(c.getName()).append(",")
-				.append(c.getDob()).append(",")
-				.append(c.getStream()).append(",")
-				.append(c.getCorrectAnswers()).append(",")
-				.append(c.getCorrectAnswerPerCategory().get(APTI)).append(",")
-				.append(c.getCorrectAnswerPerCategory().get(GK)).append(",")
-				.append(c.getCorrectAnswerPerCategory().get(c.getStream())).append(",")
-				.append(noOfAttmpt).append(",")
-				.append(aptiAttempt).append(",")
-				.append(gkAttempt).append(",")
-				.append(streamAttempt)
+			sb.append(addBasicStats(c)).append("<br>");
+		}
+		
+		model.put("stats", sb.toString());
+		return "admin/home";
+	}
+	
+	
+	@RequestMapping(value ="stats")
+	public String adminHome(HttpSession session, ModelMap model){
+		
+		if(!adminService.verifyAdmin(session)){
+			log.info("Not Logged in, redirecting to login");
+			return "redirect:/admin/login";
+		}
+		
+		List<Candidate> candidates = candidateRepository.findAll();
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Stream,")
+			.append("Correct Answers,APTI,GK,Stream,")
+			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt,Answers [qId vs T/F]");
+		
+		sb.append("<br>");
+		
+		for(Candidate c: candidates){
+
+			sb.append(addBasicStats(c))
+				.append(addAdvancedStats(c))
 				.append("<br>");
-				
 		}
 		
 		model.put("stats", sb.toString());
 		return "admin/stats";
+	}
+
+	private String addBasicStats(Candidate c){
+		
+		StringBuilder sb = new StringBuilder();
+		
+		int noOfAttmpt = c.getAttempts().size();
+		int aptiAttempt = 0;
+		int gkAttempt = 0;
+		int streamAttempt = 0;
+		
+		Set<Integer> attempts = c.getAttempts().keySet();
+		
+		for(Integer i: attempts){
+			if(i > 1 && i <= 25){
+				aptiAttempt++;
+			} else if(i >= 26 && i <= 30){
+				gkAttempt++;
+			} else if(i >= 31){
+				streamAttempt++;
+			}
+		}
+		
+		sb.append(c.getCandidateId()).append(",")
+			.append(c.getName()).append(",")
+			.append(c.getDob()).append(",")
+			.append(c.getStream()).append(",")
+			.append(c.getCorrectAnswers()).append(",")
+			.append(c.getCorrectAnswerPerCategory().get(APTI)).append(",")
+			.append(c.getCorrectAnswerPerCategory().get(GK)).append(",")
+			.append(c.getCorrectAnswerPerCategory().get(c.getStream())).append(",")
+			.append(noOfAttmpt).append(",")
+			.append(aptiAttempt).append(",")
+			.append(gkAttempt).append(",")
+			.append(streamAttempt);
+		
+		return sb.toString();
+	}
+	
+	private String addAdvancedStats(Candidate c) {
+		
+		StringBuilder sb = new StringBuilder().append(",");
+		
+		c.getQuestionSequence();
+		for(Integer qNo: c.getAttempts().keySet()){
+			System.out.println(qNo);
+			
+			int questionId = c.getQuestionSequence().get(qNo); 
+			String answer = getStrOption(c.getAttempts().get(qNo));
+			String correctAns = questionService.getCorrectAnswer(questionId);
+			boolean ansCorrect = correctAns.equals(answer);
+
+			sb.append(" [").append(questionId).append("-")
+				.append(correctAns).append("-")
+				.append(ansCorrect).append("] ");
+		}
+		
+		return sb.toString();
 	}
 	
 	@RequestMapping("logout")
@@ -131,5 +179,30 @@ public class AdminController {
 		
 		session.removeAttribute("adminUser");
 		return "redirect:/admin/login";
+	}
+	
+	// ------------------------ AUX
+	/**
+	 * Convert Numeric Options to String options
+	 * */
+	private String getStrOption(String option){
+		
+		if(option == null){
+			return "-";
+		}
+		
+		if(option.equals("1")){
+			return "A";
+		} else if(option.equals("2")){
+			return "B";
+		} else if(option.equals("3")){
+			return "C";
+		} else if(option.equals("4")){
+			return "D";
+		} else if(option.equals("5")){
+			return "E";
+		} else {
+			return "-";
+		}
 	}
 }

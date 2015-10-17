@@ -17,11 +17,13 @@ table.border th{border: 1px solid gray;}
 .inline{display: inline-block;}
 .block{display: block;}
 .f-14{font-size: 14px;}
+.f-16{font-size: 16px;}
 .head{font-weight: bold; font-size: 14px;}
 .pull-right{float: right;}
 .msg{color: #3F51B5; font-weight: bold;}
 .success{font-size: 11px; font-weight: bold; color: #4CAF50;}
 .warning{font-size: 11px; font-weight: bold; color: #FF9800;}
+.danger{font-weight: bold; color: #DE3226}
 .blue-text{color: #3F51B5}
 .blue-text.hilight{background: rgba(63, 81, 181, 0.14); padding: 2px;}
 
@@ -66,10 +68,6 @@ pre.block{display: block;}
 img.question-image{display: block; height: 250px; width: auto; padding: 20px;}
 
 
-
-
-.instrictions{width: calc(100% - 10px); margin: auto;}
-
 /* Registeration from */
 .text-gray{color: rgba(0,0,0, 0.26);}
 #registerCandidate input.blue[type=date],
@@ -89,3 +87,12 @@ img.question-image{display: block; height: 250px; width: auto; padding: 20px;}
 
 .mdl-cell{margin: -4px;}
 .mdl-card__title{padding: 10px 2px;}
+
+
+.instrictions{width: calc(100% - 10px); margin: auto;}
+
+.finalize-test-btn{margin: auto; display: block; margin-top: 30px;}
+form.finalize-test{margin-top: 150px;}
+.finalized{display: block; margin: auto; margin-top: 250px; width: 100%;}
+.test-completed{font-size: 54px; color: #3f51b5; font-weight: bold; text-align: center; width: 100%;}
+

@@ -37,7 +37,7 @@ public class Candidate {
 	private List<String> candidateIPs;
 	private List<Date> loginTimes;
 	
-	/** CandidateQuestion# vs Option Selected*/
+	/** Candidate QuestionNo vs Option Selected*/
 	private Map<Integer, String> attempts = new HashMap<>();
 	
 	@Override
@@ -45,7 +45,8 @@ public class Candidate {
 		return "Candidate [id=" + id + ", candidateId=" + candidateId + ", name=" + name + ", dob=" + dob + ", stream="
 				+ stream + ", activeStartTime=" + activeStartTime + ", correctAnswers=" + correctAnswers
 				+ ", correctAnswerPerCategory=" + correctAnswerPerCategory + ", questionSequence=" + questionSequence
-				+ ", completed=" + completed + ", attempts=" + attempts + "]";
+				+ ", completed=" + completed + ", candidateIPs=" + candidateIPs + ", loginTimes=" + loginTimes
+				+ ", attempts=" + attempts + "]";
 	}
 
 	public ObjectId getId() {

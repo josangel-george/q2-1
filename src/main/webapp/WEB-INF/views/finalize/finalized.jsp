@@ -20,7 +20,15 @@
 </head>
 <body>
 
-<p class="test-complted">Congratzz! Test Completed.</p>
+	<header>
+		<a class="navbar-brand" href="#">Mytrah</a>
+	</header>
+
+	<div class="body">
+		<div class="finalized">
+			<p class="test-completed">Congratzz! Test Completed.</p>
+		</div>
+	</div>
 
 </body>
 </html>

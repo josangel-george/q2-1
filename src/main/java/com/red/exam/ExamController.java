@@ -66,6 +66,7 @@ public class ExamController {
 		for(int i = firstQn; i <= lastQn; i++){
 			if(allQns.get(i) != null){
 				Question q = questionService.findByQuestionId(allQns.get(i));
+				q.setAnswer("");	// for safety
 				subQns.put(i, q);
 			}
 		}
@@ -123,8 +124,8 @@ public class ExamController {
 		
 		String msg = "Option update: " + resultCandidate.getCandidateId();
 		msg += " q:" + questionNo + " o: " + option;
-		msg += "correctAns:" + resultCandidate.getCorrectAnswers(); 
-		msg += "correctPerCat" + resultCandidate.getCorrectAnswerPerCategory();		
+		msg += " correctAns:" + resultCandidate.getCorrectAnswers(); 
+		msg += " correctPerCat" + resultCandidate.getCorrectAnswerPerCategory();		
 		log.info(msg);
 		
 		candidateRepository.save(resultCandidate);

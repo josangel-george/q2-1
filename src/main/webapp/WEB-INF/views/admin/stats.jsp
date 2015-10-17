@@ -25,8 +25,14 @@
 	
 	<p class="msg">${msg}</p>
 	
+	<a href="download">
+		Download Stats {Get file with timestamp}
+	</a>
+	
 	<br><br>
-	${stats}
+	<pre>${stats}</pre>
 
+	<br><br>
+	<pre>${candidateToString}</pre>
 </body>
 </html>
