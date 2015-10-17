@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.red.SessionExpiredException;
 import com.red.question.QuestionService;
 
 @Controller
@@ -44,9 +43,13 @@ public class CandidateController {
 	private static final Logger log = LoggerFactory.getLogger(CandidateController.class);
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String home(HttpSession session) throws SessionExpiredException{
+	public String home(HttpSession session, RedirectAttributes redir){
 		
-		candidateService.verifySession(session);
+		String candidateId = candidateService.verifySession(session);
+		if(!verifyReturn(candidateId)){
+			redir.addFlashAttribute("msg", "User not valid. Please register. " + candidateId);
+			return "redirect:/register";
+		}
 		
 		return "redirect:/exam/1";
 	}
@@ -79,13 +82,25 @@ public class CandidateController {
 		String name = candidate.getName();
 		String cId = candidate.getCandidateId();
 		
+		// check if same id and diff dob
+		List<Candidate> c2 = candidateRepository.findByCandidateId(cId);
+
+		if(c2.size() > 0){
+			Candidate c3 = c2.get(0);
+			if(!c3.getName().equals(name)){
+				String msg = "Id already exist, But name not matching. unable to recover previous progress";
+				redirModel.addFlashAttribute("msg", msg);
+				return "redirect:/register";
+			}
+		}
+
 		List<Candidate> candidates = candidateRepository
 									.findByNameIgnoreCaseAndCandidateId(name, cId);
 		
 		if (candidates.size() > 0) {
 			
 			log.info("User already exist. Not adding a new user. Loggin in.");
-			String msg = "User found in db. Recovering previous progress.";
+			String msg = "User found in DB. Recovering previous progress.";
 			redirModel.addFlashAttribute("msg", msg);
 			
 			Candidate c = candidates.get(0);
@@ -153,14 +168,27 @@ public class CandidateController {
 	public String finalizePage(HttpSession session,
 			RedirectAttributes redir){
 		
+		String candidateId = candidateService.verifySession(session);
+		if(!verifyReturn(candidateId)){
+			redir.addFlashAttribute("msg", "User not valid. Please register. " + candidateId);
+			return "redirect:/register";
+		}
+		
 		return "finalize/finalize-confirm";
 	}
 	
 	@RequestMapping(value = "finalize", method = RequestMethod.POST)
-	public String finalize(HttpSession session) throws SessionExpiredException{
+	public String finalize(HttpSession session, RedirectAttributes redir){
 		
 		
-		Candidate c = candidateService.verifySession(session);
+		String candidateId = candidateService.verifySession(session);
+		if(candidateId.equals("INVALID")){
+			
+			redir.addFlashAttribute("msg", "Invalid User. Please register.");
+			return "redirect:/register";
+		}
+		
+		Candidate c = candidateRepository.findByCandidateId(candidateId).get(0);
 		
 		// get the candidate
 		Candidate candidate = candidateRepository.findByCandidateId(c.getCandidateId()).get(0);
@@ -176,4 +204,13 @@ public class CandidateController {
 		return "finalize/finalized";
 	}
 	
+	private boolean verifyReturn(String msg){
+		
+		if(msg.equals("NULL") || msg.equals("NOT_FOUND") || msg.equals("EXPIRED") 
+					|| msg.equals("FINALIZED")){
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

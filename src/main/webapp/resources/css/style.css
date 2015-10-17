@@ -21,7 +21,7 @@ table.border th{border: 1px solid gray;}
 .f-16{font-size: 16px;}
 .head{font-weight: bold; font-size: 14px;}
 .pull-right{float: right;}
-.msg{color: #3F51B5; font-weight: bold;}
+.msg{color: #FF9800;}
 .success{font-size: 11px; font-weight: bold; color: #4CAF50;}
 .warning{font-size: 11px; font-weight: bold; color: #FF9800;}
 .danger{font-weight: bold; color: #DE3226}
@@ -85,6 +85,8 @@ img.question-image{display: block; height: 250px; width: auto; padding: 20px;}
 #registerCandidate h2{font-size: 18px;}
 #registerCandidate input[type=submit]{margin-top: 10px;}
 #registerCandidate{width: 450px; margin-bottom: 20px; margin-left: auto; margin-right: auto; padding: 25px;}
+
+.register-msg{margin: 14px 0px -20px 0px; color: #F44336;}
 
 .mdl-cell{margin: -4px;}
 .mdl-card__title{padding: 10px 2px;}

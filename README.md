@@ -1,22 +1,28 @@
 ToDO
-- make all the resources local
-- Log IP Address of Candidate
 - REMOVE Exception
 - Copy header around
 - update disclaimer
+- js always saying save!! | its fine
+- change material css to blue-red
+
+- download stats with timestamp
+- able to load different question sets
+- candidate summary put in card
+- rename finalize to something
+- add Logo
+- add Tag line
+- Modify instrictions and disclaimer
+
+- Timer?
 
 Fallbacks ===
 - power backup
 
-Issues ======
-- change font to Roboto
-- js always saying save!!
-- change material css to blue-red
-
-
 Other ===========
 Put finalize-confirm page content in card
 Put finalize page content in card
+
+
 
 
 DONE =========================================================================
@@ -38,3 +44,6 @@ x Add QuestionCache Entry for 	<questionId vs Question>
 	x fetch the question and answer from cache whenever needed.
 x change MongoDb port number
 x find a mongo db editor
+x change font to Roboto
+x Log IP Address of Candidate
+x make all the resources local

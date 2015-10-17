@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.red.SessionExpiredException;
 import com.red.question.Question;
 import com.red.question.QuestionRepository;
 
@@ -55,23 +54,21 @@ public class CandidateService {
 	 * @return Currently Logged in candidate.
 	 * @throws Exception if no valid session exist
 	 * */
-	public Candidate verifySession(HttpSession session) throws SessionExpiredException{
+	public String verifySession(HttpSession session){
 	
 		String candidateId = (String) session.getAttribute("candidateId");
 		
 		// if no user in session
 		if(candidateId == null){
-			String msg = "No candidate found in session.";
-			throw new SessionExpiredException(msg);
+			return "NULL";
 		}
 		
 		// If no user in DB which matches that in session!
 		List<Candidate> candidates = candidateRepository.findByCandidateId(candidateId);
 		
 		if(candidates.size() <= 0){
-			
-			String msg = "Candidate found in session is not present in DB.";
-			throw new SessionExpiredException(msg);
+
+			return "NOT_FOUND";
 		}
 		
 		Candidate candidate = candidates.get(0);
@@ -79,18 +76,16 @@ public class CandidateService {
 		
 		// If user session expired
 		if(new Date().getTime() - startTime > SESSION_EXPIRY_TIME){	// 50 mins
-			
-			String msg = "Candidate exist in DB. But Session Expired." + candidate.getCandidateId();
-			throw new SessionExpiredException(msg);
+
+			return "EXPIRED";
 		} 
 
 		// If user has already finalized his session
 		if(candidate.isCompleted()){
 			
-			String msg = "Candidate already finalized his test.";
-			throw new SessionExpiredException(msg);
+			return "FINALIZED";
 		}
 		
-		return candidate;
+		return candidate.getCandidateId();
 	}
 }

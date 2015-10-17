@@ -58,6 +58,7 @@
 			</div>
 		<input type="submit" value="Register" 
 			class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored mdl-cell mdl-cell--12-col-desktop"/>
+		<p class="register-msg">${msg}</p>
 		</div>
 	</form:form>
 	

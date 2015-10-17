@@ -38,7 +38,7 @@
 				<p class="inline">Name: <strong class="blue-text hilight">${candidateName}</strong></p>
 				<p class="inline">ID: <strong class="blue-text hilight">${candidateId}</strong></p>
 				<p class="inline">Stream: <strong class="blue-text hilight">${candidateStream}</strong></p>
-				<br><p class="inline">${msg}</p>
+				<br><p class="inline msg">${msg}</p>
 				
 				<div class="attempt-summary">
 					Summary 

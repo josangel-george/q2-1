@@ -15,8 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.red.SessionExpiredException;
 import com.red.candidate.Candidate;
 import com.red.candidate.CandidateController;
 import com.red.candidate.CandidateRepository;
@@ -43,10 +43,16 @@ public class ExamController {
 
 	@RequestMapping("{pageNo}")
 	public String examMain(ModelMap model, @PathVariable int pageNo,
-			HttpSession session) throws SessionExpiredException{
+			HttpSession session, RedirectAttributes redir){
 		
 		// find the user from session
-		Candidate candidate = candidateService.verifySession(session);
+		String candidateId = candidateService.verifySession(session);
+		if(!verifyReturn(candidateId)){
+			redir.addFlashAttribute("msg", "User not valid. Please register. "  + candidateId);
+			return "redirect:/register";
+		}
+		
+		Candidate candidate = candidateRepository.findByCandidateId(candidateId).get(0);
 		
 		// read the questions from session scope
 		Map<Integer, Integer> allQns = candidate.getQuestionSequence();
@@ -66,7 +72,6 @@ public class ExamController {
 		for(int i = firstQn; i <= lastQn; i++){
 			if(allQns.get(i) != null){
 				Question q = questionService.findByQuestionId(allQns.get(i));
-				q.setAnswer("");	// for safety
 				subQns.put(i, q);
 			}
 		}
@@ -106,14 +111,18 @@ public class ExamController {
 	@RequestMapping("/saveProgress/{questionNo}/{option}")
 	public ResponseEntity<Void> saveProgreess(@PathVariable int questionNo,
 					@PathVariable String option,
-					HttpSession session) throws SessionExpiredException{
+					HttpSession session){
 		
 		// find the user from session
-		Candidate candidate = candidateService.verifySession(session);
+		String candidateId = candidateService.verifySession(session);
+		if(!verifyReturn(candidateId)){
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
+		Candidate candidate = candidateRepository.findByCandidateId(candidateId).get(0);
 		
 		// Integer qId = candidateService.getQuestionId(questionNo, candidate);
 		// Question q = questionService.findByQuestionId(qId);
-		
 		
 		int questionId = candidateService.getQuestionId(questionNo, candidate);
 		Question q = questionService.findByQuestionId(questionId);
@@ -141,7 +150,7 @@ public class ExamController {
 		String correctAns = q.getAnswer();
 		String category = q.getCategory();
 		
-		log.trace(prevAns + newAns + correctAns + category);
+		log.info(prevAns + "-" + newAns + "-" + correctAns + "-" +  category);
 		
 		if(prevAns == null & newAns.equals(correctAns)){
 			// increment
@@ -208,6 +217,16 @@ public class ExamController {
 			return "E";
 		} else {
 			return "-";
+		}
+	}
+	
+	private boolean verifyReturn(String msg){
+		
+		if(msg.equals("NULL") || msg.equals("NOT_FOUND") || msg.equals("EXPIRED") 
+					|| msg.equals("FINALIZED")){
+			return false;
+		} else {
+			return true;
 		}
 	}
 }
