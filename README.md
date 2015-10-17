@@ -1,22 +1,17 @@
 ToDO
-- download stats with timestamp
-- able to load different question sets
-- candidate summary put in card
-- rename finalize to something
-- add Logo
 - add Tag line
-- Modify instrictions and disclaimer
-
+- logo
 - Timer?
+- confirm the expiration time
+- Modify instrictions and disclaimer
 
 Fallbacks ===
 - power backup
 
 Other ===========
 Put finalize-confirm page content in card
-Put finalize page content in card
-
-
+Duplicate navigation in bottom of pge 
+verify sysouts logs...
 
 
 DONE =========================================================================
@@ -46,4 +41,9 @@ x Copy header around
 x update disclaimer
 x js always saying save!! | its fine
 x change material css to blue-red
-
+x able to load different question sets
+x candidate summary put in card
+x rename finalize to something
+x add Logo
+x download stats with timestamp
+x confirm the question pattern

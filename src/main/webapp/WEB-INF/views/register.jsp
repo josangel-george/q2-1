@@ -64,12 +64,13 @@
 	
 	<div>
 		<pre class="instrictions">
-		Disclaimer
+		Instructions
 			- ID should match the exact ID of candidate. else test will be render invalid.
 			- While leaving the hall ensure that session is finalized.
 			- Once registered. User ID will be valid for 50 minutes.
+			
 		Question Pattern
-			- Total 50 questions
+			- Total 50 questions. [No negative marking]
 			- First 25 Questions based on 'Aptitude'
 			- Next 5 from 'General Knowledge'
 			- Remaining 20 based on your stream

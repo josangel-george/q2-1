@@ -3,8 +3,15 @@
 html,body{width: 100%; height: 100%; overflow: auto;}
 html,body{font-family:"Roboto", "Helvetica","Arial",sans-serif;}
 
+div.bg{background-image: url("/resources/image/logo.jpg");
+	    background-repeat: no-repeat;
+	        background-size: cover;
+	        width: 100%; height: 100%; position: fixed;
+	            opacity: 0.02;
+	            z-index: 0;}
+
 div.body,
-form.body{margin-top: 48px;}
+form.body{margin-top: 48px; z-index: 10;}
 p{margin-bottom: 10px; display: inline-block;}
 
 table{border-collapse: collapse;}
@@ -12,6 +19,11 @@ table.border,
 table.border td,
 table.border tr,
 table.border th{border: 1px solid gray;}
+
+@media (max-width: 1080px){
+	.exam-header{width: calc(100% - 20px) !important;}
+	.question{width: calc(100% - 20px) !important; }
+}
 
 .border{border: 1px solid gray;}
 .w-100{width: 100%;}
@@ -49,12 +61,14 @@ pre.block{display: block;}
 .question-text > pre,
 .question-text > strong,
 .question-text > i {font-size: 16px;}
-.question{margin-left: 10px; width: calc(100% - 20px); min-height: 0px; margin-bottom: 16px;
+.question{width: calc(100% - 250px); min-height: 0px; margin-bottom: 16px;
+		padding: 15px;
 	    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);}
+.question-option{width: 600px;}
 
-.page-nav{margin-right: 20px;}
+.page-nav{margin-right: 20px; margin-top: 35px;}
 .page-nav *{display: inline-block;}
-.page-nav a {text-decoration: none;}
+.page-nav a {text-decoration: none; position: relative;}
 .page-nav a:hover{text-decoration: underline;}
 .page-nav ul > li{padding: 2px 7px;}
 .page-nav ul {line-height: 1.5; margin: 0;}
@@ -62,8 +76,14 @@ pre.block{display: block;}
 .page-nav li.active{border: 1px solid #3F51B5; background: #3F51B5;}
 
 .attempt-summary-entry{padding-right: 10px; display: inline-block;}
+.exam-header{width: calc(100% - 250px); margin: auto;}
 .exam-header > .info{padding-left: 20px;}
-.exam-header > .info > p{padding-right: 10px;}
+.exam-header > .info * {padding: 0; margin: 0;}
+.exam-header > .info strong{margin-right: 10px;}
+.exam-header > .info .blue-text.hilight{padding: 2px;}
+.exam-header > .info{min-height: 0; width: 400px; font-size: 14px; margin-bottom: 10px; padding: 12px;
+		    padding: 8px 12px;
+		box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);}
 .exam-finalize{float: right; color: white; font-size: 12px;     margin-right: 50px;}
 
 img.question-image{display: block; height: 250px; width: auto; padding: 20px;}

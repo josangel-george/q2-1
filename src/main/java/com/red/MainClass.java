@@ -25,9 +25,9 @@ public class MainClass {
 	
 	public static final String APTI = "Aptitude";	// 1000
 	public static final String GK = "GK";			// 2000
-	public static final String EEE = "EEE";			// 5000
 	public static final String CS = "CS";			// 3000
 	public static final String EC = "EC";			// 4000
+	public static final String EEE = "EEE";			// 5000
 	public static final String CIVIL = "Civil";		// 6000
 	public static final String MECH = "Mechanical";	// 7000
 	
@@ -41,7 +41,6 @@ public class MainClass {
         System.out.println(cRepo.findAll());
         
         QuestionRepository qRepo = ctx.getBean("questionRepository", QuestionRepository.class);
-        //populateQuestions(qRepo);
         
         /** Populate the allQuestions field in Question Cache */
         populateQuestionCache(qRepo);

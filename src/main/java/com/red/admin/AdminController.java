@@ -4,16 +4,23 @@ import static com.red.MainClass.APTI;
 import static com.red.MainClass.GK;
 import static com.red.admin.AdminService.ADMIN;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -128,7 +135,7 @@ public class AdminController {
 		Set<Integer> attempts = c.getAttempts().keySet();
 		
 		for(Integer i: attempts){
-			if(i > 1 && i <= 25){
+			if(i >= 1 && i <= 25){
 				aptiAttempt++;
 			} else if(i >= 26 && i <= 30){
 				gkAttempt++;
@@ -172,6 +179,54 @@ public class AdminController {
 		}
 		
 		return sb.toString();
+	}
+	
+	@RequestMapping("download")
+	public ResponseEntity<Void> downloadStats(HttpSession session,
+			HttpServletResponse response){
+		
+		if(!adminService.verifyAdmin(session)){
+			log.info("Not Logged in, redirecting to login");
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
+		List<Candidate> candidates = candidateRepository.findAll();
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Stream,")
+			.append("Correct Answers,APTI,GK,Stream,")
+			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt,Answers [qId vs T/F]");
+		
+		sb.append("\r\n");
+		
+		for(Candidate c: candidates){
+
+			sb.append(addBasicStats(c))
+				.append(addAdvancedStats(c))
+				.append("\r\n");
+		}
+		
+		String data = sb.toString();
+		
+        // Send file
+		String date = new SimpleDateFormat("yyyy-MM-dd'T'HH-mm-ss").format(new Date());
+		String fileName = "Stats-" + date + ".csv";
+		
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"", fileName);
+        
+        response.setContentType("text/csv");
+        response.setHeader(headerKey, headerValue);
+		
+        try {
+			FileCopyUtils.copy(data.getBytes(), response.getOutputStream());
+		} catch (IOException e) {
+			System.err.println("File download failed. Bkup: " + data);
+			log.error("File download failed. Bkup: " + data);
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@RequestMapping("logout")

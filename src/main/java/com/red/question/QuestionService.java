@@ -44,7 +44,6 @@ public class QuestionService {
 			qnCount++;
 		}
 		
-		qnCount = 26;
 		for(int i= 0; i < GK_QN_COUNT; i++){
 			
 			if(i >= gkQuestions.size()) {break;}
@@ -54,7 +53,6 @@ public class QuestionService {
 			qnCount++;
 		}
 		
-		qnCount = 31;
 		for(int i = 0; i < STREAM_QN_COUNT; i++){
 			
 			if(i >= streamQuestions.size()) {break;}
@@ -63,6 +61,8 @@ public class QuestionService {
 			questionSequence.put(qnCount, q.getQuestionId());
 			qnCount++;
 		}
+		
+		System.out.println("User created: stream: " + string + " -" + questionSequence);
 		
 		return questionSequence;
 	}

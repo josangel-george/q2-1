@@ -150,7 +150,7 @@ public class ExamController {
 		String correctAns = q.getAnswer();
 		String category = q.getCategory();
 		
-		log.info(prevAns + "-" + newAns + "-" + correctAns + "-" +  category);
+		log.trace(prevAns + "-" + newAns + "-" + correctAns + "-" +  category);
 		
 		if(prevAns == null & newAns.equals(correctAns)){
 			// increment

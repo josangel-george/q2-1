@@ -22,24 +22,30 @@
 </head>
 <body>
 
+	<div class="bg"></div>
 	<!-- Common code -->
 	<header>
-		<a class="navbar-brand" href="#">Mytrah</a>
+		<a class="navbar-brand" href="#">Mytrah Assesment Test</a>
 		<a	href="<c:url value='/finalize'/>"
 			 class="mdl-button mdl-js-button mdl-js-ripple-effect exam-finalize">
-		  Finalize
+		  FINISH
 		</a>
 	</header>
 	
 	<div class="body">
 		<!-- Messages from server -->
 		<div class="exam-header">
-			<div class="info inline">
-				<p class="inline">Name: <strong class="blue-text hilight">${candidateName}</strong></p>
-				<p class="inline">ID: <strong class="blue-text hilight">${candidateId}</strong></p>
-				<p class="inline">Stream: <strong class="blue-text hilight">${candidateStream}</strong></p>
-				<br><p class="inline msg">${msg}</p>
-				
+			<div class="info inline mdl-card mdl-shadow--2dp">
+				<div>
+					<p class="inline">Name: <strong class="blue-text hilight">${candidateName}</strong></p>
+					<p class="inline">ID: <strong class="blue-text hilight">${candidateId}</strong></p>
+					<p class="inline">Stream: <strong class="blue-text hilight">${candidateStream}</strong></p>
+				</div>
+				<c:if test="${fn:length(msg) gt 0 }">
+					<div class="">
+						<p class="inline msg">${msg}</p>
+					</div>
+				</c:if>
 				<div class="attempt-summary">
 					Summary 
 					<c:forEach items="${attemptSlice}" var="attempt">
