@@ -1,6 +1,7 @@
 @CHARSET "ISO-8859-1";
 
-body{width: 100%; height: 100%; overflow: auto;}
+html,body{width: 100%; height: 100%; overflow: auto;}
+html,body{font-family:"Roboto", "Helvetica","Arial",sans-serif;}
 
 div.body,
 form.body{margin-top: 48px;}
