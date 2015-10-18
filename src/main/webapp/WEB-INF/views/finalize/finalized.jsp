@@ -19,13 +19,15 @@
 <script src="<c:url value='/resources/js/material.js'/>"></script>
 <script src="<c:url value='/resources/js/script.js'/>"></script>
 </head>
-<body>
+<body class="finished">
 
+	<div class="bg"></div>
+	
 	<header>
-		<a class="navbar-brand" href="#">Mytrah</a>
+		<a class="navbar-brand" href="#">Mytrah Assesment Test</a>
 	</header>
 
-	<div class="body">
+	<div class="body bg-transparent">
 		<div class="finalized">
 			<p class="test-completed">Congratzz! Test Completed.</p>
 		</div>

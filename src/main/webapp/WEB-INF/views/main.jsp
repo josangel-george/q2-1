@@ -28,7 +28,7 @@
 		<a class="navbar-brand" href="#">Mytrah Assesment Test</a>
 		<a	href="<c:url value='/finalize'/>"
 			 class="mdl-button mdl-js-button mdl-js-ripple-effect exam-finalize">
-		  FINISH
+		  SUBMIT
 		</a>
 	</header>
 	

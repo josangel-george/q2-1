@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -41,7 +42,7 @@ public class AdminController {
 	@Autowired
 	private QuestionService questionService;
 	
-	private static final Logger log = LoggerFactory.getLogger(CandidateRepository.class);
+	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 
 	@RequestMapping(value = "login")
 	public String adminLoginPage(Admin admin){
@@ -50,21 +51,23 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String adminLogin(Admin admin, HttpSession session){
+	public String adminLogin(Admin admin, HttpSession session, HttpServletRequest request){
 		
 		String userId = admin.getUserId();
 		String pass = admin.getPass();
 		
 		log.info("Login Attempt: " + userId + "-" + pass.length());
+		String ip = request.getLocalAddr();
 		
-		if(userId.equals("red") && pass.equals("ilayathalapathi")){
+		if(userId.equals("thalaiva") && pass.equals("ilayathalapathi")){
 			
 			session.setAttribute("adminUser", ADMIN);
-			log.info("Login Success.");
+			
+			log.info("Admin Login Success. IP:" + ip);
 			return "redirect:/admin/home";
 		} else {
 			
-			log.info("Login Failure.");
+			log.info("Login Failure. User: " + userId + " IP:" + ip);
 			return "redirect:/admin/login";
 		}
 	}

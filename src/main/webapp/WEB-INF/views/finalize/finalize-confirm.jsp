@@ -19,18 +19,20 @@
 <script src="<c:url value='/resources/js/material.js'/>"></script>
 <script src="<c:url value='/resources/js/script.js'/>"></script>
 </head>
-<body>
+<body class="finishing">
+	
+	<div class="bg"></div>
 
 	<header>
-		<a class="navbar-brand" href="#">Mytrah</a>
+		<a class="navbar-brand" href="#">Mytrah Assesment Test</a>
 	</header>
 	
 	Are you sure you want to finalize the test.
 	<form:form class="body finalize-test">
 		<pre class="danger block f-16">
-			By clicking the "COMPLETE TEST" button you agree that your test is completed.
-			Upon completion no more further updates will be allowed.</pre>
-		<input type="submit" value="Complete Test"
+By clicking the "SUBMIT TEST" button you agree that your test is completed.
+Upon submission, no more further updates will be allowed.</pre>
+		<input type="submit" value="Submit Test"
 			class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent finalize-test-btn"/>
 	</form:form>
 	

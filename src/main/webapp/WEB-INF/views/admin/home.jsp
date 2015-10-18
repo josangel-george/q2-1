@@ -25,7 +25,7 @@
 	<a href="<c:url value='/admin/stats'/>">Admin Stats</a>
 	<a href="<c:url value='/admin/question/'/>">Question Home</a>
 	<a href="download">
-		Download Stats {Get file with timestamp}
+		Download Stats
 	</a>
 	
 	<p class="msg">${msg}</p>

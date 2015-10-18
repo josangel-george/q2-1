@@ -1,8 +1,5 @@
 ToDO
-- add Tag line
-- logo
-- Timer?
-- confirm the expiration time
+- verify questions
 - Modify instrictions and disclaimer
 
 Fallbacks ===
@@ -47,3 +44,8 @@ x rename finalize to something
 x add Logo
 x download stats with timestamp
 x confirm the question pattern
+
+x add Tag line
+x logo
+x Timer?
+x confirm the expiration time

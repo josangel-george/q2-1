@@ -20,14 +20,17 @@
 <script src="<c:url value='/resources/js/script.js'/>"></script>
 
 </head>
-<body>
+<body class="registration-page">
+
+	<div class="bg"></div>
+	
 	<!-- Common code -->
 	<header>
-		<a class="navbar-brand" href="#">Mytrah</a>
+		<a class="navbar-brand" href="#">Mytrah Assesment Test</a>
 	</header>
 
 	<form:form method="post" commandName="candidate" modelAttribute="candidate"
-		id="registerCandidate" class = "form body mdl-card mdl-shadow--2dp">
+		id="registerCandidate" class = "form bg-transparent body mdl-card mdl-shadow--2dp">
 		
 		
 		<div class="mdl-card__title mdl-card--border">

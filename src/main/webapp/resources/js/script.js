@@ -19,15 +19,21 @@
     		
     		var url = '/exam/saveProgress/' + questionNo + '/' + optionSelected;
     		var statusTextId = 'p#saveStatus_' + questionNo; 
+			
+			$(statusTextId).text("Saving.. " + optionMap(optionSelected));
+    		$(statusTextId).addClass("warning");
+			$(statusTextId).removeClass("success");
     		
     		// assuming app running in root context
     		$.get(url, function(data){
     			console.log("Success");
     			$(statusTextId).text("Saved " + optionMap(optionSelected));
     			$(statusTextId).addClass("success");
+				$(statusTextId).removeClass("warning");
     		}).fail(function(){
     			$(statusTextId).text("Not Saved");
     			$(statusTextId).addClass("warning");
+				$(statusTextId).removeClass("success");
     		})
     		
     		// update summary
