@@ -59,6 +59,19 @@
 				</form:select>
 				<div class="mdl-tooltip" for="stream">Please select your stream.</div>
 			</div>
+			<div class="block mdl-cell mdl-cell--12-col-desktop" id="gender_select">
+				<label class="mdl-radio mdl-js-radio" for="gender_m">
+                  <form:radiobutton path="gender" value="M" required="required" 
+                  			id="gender_m" class="mdl-radio__button"/>
+				  <span class="mdl-radio__label">Male</span>
+				</label>
+				<label class="mdl-radio mdl-js-radio" for="gender_f">
+					<form:radiobutton path="gender" value="F" required="required" 
+							id="gender_f" class="mdl-radio__button"/>
+					<span class="mdl-radio__label">Female</span>
+				</label>
+				<div class="mdl-tooltip" for="gender_select">Please select your gender.</div>
+			</div>
 		<input type="submit" value="Register" 
 			class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored mdl-cell mdl-cell--12-col-desktop"/>
 		<p class="register-msg">${msg}</p>

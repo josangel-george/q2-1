@@ -88,7 +88,7 @@ public class AdminController {
 		List<Candidate> candidates = candidateRepository.findAll();
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Stream,")
+		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Gender,Stream,Completed,")
 			.append("Correct Answers,APTI,GK,Stream,")
 			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt")
 			.append("<br>");
@@ -114,7 +114,7 @@ public class AdminController {
 		List<Candidate> candidates = candidateRepository.findAll();
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Stream,")
+		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Gender,Stream,Completed,")
 			.append("Correct Answers,APTI,GK,Stream,")
 			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt,Answers [qId vs T/F]");
 		
@@ -152,14 +152,20 @@ public class AdminController {
 			}
 		}
 		
+		Integer aptiCorrect = c.getCorrectAnswerPerCategory().get(APTI);
+		Integer gkCorrect = c.getCorrectAnswerPerCategory().get(GK);
+		Integer streamCorrect = c.getCorrectAnswerPerCategory().get(c.getStream());
+		
 		sb.append(c.getCandidateId()).append(",")
 			.append(c.getName()).append(",")
 			.append(c.getDob()).append(",")
+			.append(c.getGender()).append(",")
 			.append(c.getStream()).append(",")
+			.append(c.isCompleted()).append(",")
 			.append(c.getCorrectAnswers()).append(",")
-			.append(c.getCorrectAnswerPerCategory().get(APTI)).append(",")
-			.append(c.getCorrectAnswerPerCategory().get(GK)).append(",")
-			.append(c.getCorrectAnswerPerCategory().get(c.getStream())).append(",")
+			.append(aptiCorrect == null ? 0 : aptiCorrect).append(",")
+			.append(gkCorrect == null ? 0 : gkCorrect).append(",")
+			.append(streamCorrect == null ? 0: streamCorrect).append(",")
 			.append(noOfAttmpt).append(",")
 			.append(aptiAttempt).append(",")
 			.append(gkAttempt).append(",")
@@ -200,7 +206,7 @@ public class AdminController {
 		List<Candidate> candidates = candidateRepository.findAll();
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Stream,")
+		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Gender,Stream,Completed,")
 			.append("Correct Answers,APTI,GK,Stream,")
 			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt,Answers [qId vs T/F]");
 		

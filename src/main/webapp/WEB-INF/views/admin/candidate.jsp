@@ -21,11 +21,11 @@
 </head>
 <body>
 	
-	<a href="<c:url value='/admin/home'/>" class="active">Admin Home</a>
+	<a href="<c:url value='/admin/home'/>">Admin Home</a>
 	<a href="<c:url value='/admin/question/'/>">Question Home</a>
-	<a href="<c:url value='/admin/candidate/'/>">Candidate Home</a>
+	<a href="<c:url value='/admin/candidate/'/>" class="active">Candidate Home</a>
 
-	<table>
+	<table class="border">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -54,7 +54,7 @@
 				<td>${c.stream}</td>
 				<td>${c.completed}</td>
 				<td>${c.feedback}</td>
-				<td></td>
+				<td><!-- candidateIPs not working -->-</td>
 				<td>${c.loginTimes}</td>
 				<td>${c.activeStartTime}</td>
 				<td>${c.correctAnswers}</td>

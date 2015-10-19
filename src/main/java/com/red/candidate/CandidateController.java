@@ -186,7 +186,7 @@ public class CandidateController {
 	public String finalize(HttpSession session, RedirectAttributes redir,
 				@RequestParam String feedback){
 		
-		
+		System.err.println(feedback);
 		String candidateId = (String) session.getAttribute("candidateId");
 		if(candidateId == null){
 			
