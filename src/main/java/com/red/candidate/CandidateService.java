@@ -16,7 +16,7 @@ import com.red.question.QuestionRepository;
 @Service
 public class CandidateService {
 	
-	private static final long SESSION_EXPIRY_TIME = 50 * 60 * 1_000;
+	 public static final long SESSION_EXPIRY_TIME = 50 * 60 * 1_000;  // 50 min in ms
 
 	@Autowired
 	private CandidateRepository candidateRepository; 
@@ -77,13 +77,13 @@ public class CandidateService {
 		// If user session expired
 		if(new Date().getTime() - startTime > SESSION_EXPIRY_TIME){	// 50 mins
 
-			return "EXPIRED";
+			return "SESSION_EXPIRED";
 		} 
 
 		// If user has already finalized his session
 		if(candidate.isCompleted()){
 			
-			return "FINALIZED";
+			return "ALREADY_SUBMITTED";
 		}
 		
 		return candidate.getCandidateId();

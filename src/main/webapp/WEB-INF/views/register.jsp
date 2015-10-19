@@ -69,7 +69,7 @@
 		<pre class="instrictions">
 		Instructions
 			- ID should match the exact ID of candidate. else test will be render invalid.
-			- While leaving the hall ensure that session is finalized.
+			- While leaving the hall ensure you SUBMIT the test (SUBMIT button is on top right).
 			- Once registered. User ID will be valid for 50 minutes.
 			
 		Question Pattern
@@ -77,7 +77,7 @@
 			- First 25 Questions based on 'Aptitude'
 			- Next 5 from 'General Knowledge'
 			- Remaining 20 based on your stream
-			- Separate weightage is given for each section.
+			- Separate weightage will given for each section.
 		</pre> 
 	</div>
 </body>

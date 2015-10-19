@@ -75,7 +75,7 @@ pre.block{display: block;}
 	    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);}
 .question-option{width: 600px;}
 
-.page-nav{margin-right: 20px; margin-top: 35px;}
+.page-nav{margin-top: 0px;}
 .page-nav *{display: inline-block;}
 .page-nav a {text-decoration: none; position: relative;}
 .page-nav a:hover{text-decoration: underline;}
@@ -83,6 +83,7 @@ pre.block{display: block;}
 .page-nav ul {line-height: 1.5; margin: 0;}
 .page-nav li.active a{color: white}
 .page-nav li.active{border: 1px solid #3F51B5; background: #3F51B5;}
+.page-nav .current-time{display: block; text-align: right; color: #bdbdbd; font-size: 11px;}
 
 .attempt-summary-entry{padding-right: 10px; display: inline-block;}
 .exam-header{width: calc(100% - 250px); margin: auto;}
@@ -90,7 +91,7 @@ pre.block{display: block;}
 .exam-header > .info * {padding: 0; margin: 0;}
 .exam-header > .info strong{margin-right: 10px;}
 .exam-header > .info .blue-text.hilight{padding: 2px;}
-.exam-header > .info{min-height: 0; width: 400px; font-size: 14px; margin-bottom: 10px; padding: 12px;
+.exam-header > .info{min-height: 0; width: 460px; font-size: 14px; margin-bottom: 10px; padding: 12px;
 		    padding: 8px 12px;
 		box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);}
 .exam-finalize{float: right; color: white; font-size: 12px;     margin-right: 50px;}

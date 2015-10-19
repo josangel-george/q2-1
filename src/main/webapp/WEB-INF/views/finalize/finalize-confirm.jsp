@@ -30,6 +30,7 @@
 	Are you sure you want to finalize the test.
 	<form:form class="body finalize-test">
 		<pre class="danger block f-16">
+${expiryMessage}
 By clicking the "SUBMIT TEST" button you agree that your test is completed.
 Upon submission, no more further updates will be allowed.</pre>
 		<input type="submit" value="Submit Test"

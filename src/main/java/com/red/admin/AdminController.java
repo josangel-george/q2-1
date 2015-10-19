@@ -59,7 +59,7 @@ public class AdminController {
 		log.info("Login Attempt: " + userId + "-" + pass.length());
 		String ip = request.getLocalAddr();
 		
-		if(userId.equals("thalaiva") && pass.equals("ilayathalapathi")){
+		if(userId.equals("thalaiva") && pass.equals("ilayathalapathi05$")){
 			
 			session.setAttribute("adminUser", ADMIN);
 			
@@ -169,7 +169,6 @@ public class AdminController {
 		
 		c.getQuestionSequence();
 		for(Integer qNo: c.getAttempts().keySet()){
-			System.out.println(qNo);
 			
 			int questionId = c.getQuestionSequence().get(qNo); 
 			String answer = getStrOption(c.getAttempts().get(qNo));

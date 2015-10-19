@@ -59,6 +59,8 @@
 			
 			<!-- Pagination -->
 			<nav class="pull-right inline page-nav">
+			  <p class="current-time">
+			  	Session Expiry: <b>${expiryTime}</b> | Current Server Time: <b>${currentTime}</b></p>
 			  <ul class="pagination">
 			    <li>
 			      <div class="mdl-tooltip" for="prevPage">Previous Page</div>

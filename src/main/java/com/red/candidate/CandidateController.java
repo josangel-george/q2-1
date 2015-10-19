@@ -169,8 +169,13 @@ public class CandidateController {
 		
 		String candidateId = candidateService.verifySession(session);
 		if(!verifyReturn(candidateId)){
-			redir.addFlashAttribute("msg", "User not valid. Please register. " + candidateId);
-			return "redirect:/register";
+			
+			if(candidateId.equals("SESSION_EXPIRED")){
+				// allow user through, if user exist and is only invalid due to expiry
+			} else {
+				redir.addFlashAttribute("msg", "User not valid. Please register. " + candidateId);
+				return "redirect:/register";
+			}
 		}
 		
 		return "finalize/finalize-confirm";
@@ -180,8 +185,8 @@ public class CandidateController {
 	public String finalize(HttpSession session, RedirectAttributes redir){
 		
 		
-		String candidateId = candidateService.verifySession(session);
-		if(candidateId.equals("INVALID")){
+		String candidateId = (String) session.getAttribute("candidateId");
+		if(candidateId == null){
 			
 			redir.addFlashAttribute("msg", "Invalid User. Please register.");
 			return "redirect:/register";
@@ -203,10 +208,11 @@ public class CandidateController {
 		return "finalize/finalized";
 	}
 	
+	/** true if user valid else false */
 	private boolean verifyReturn(String msg){
 		
-		if(msg.equals("NULL") || msg.equals("NOT_FOUND") || msg.equals("EXPIRED") 
-					|| msg.equals("FINALIZED")){
+		if(msg.equals("NULL") || msg.equals("NOT_FOUND") || msg.equals("SESSION_EXPIRED") 
+					|| msg.equals("ALREADY_SUBMITTED")){
 			return false;
 		} else {
 			return true;
