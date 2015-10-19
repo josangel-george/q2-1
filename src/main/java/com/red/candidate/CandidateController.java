@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.red.question.QuestionService;
@@ -182,7 +183,8 @@ public class CandidateController {
 	}
 	
 	@RequestMapping(value = "finalize", method = RequestMethod.POST)
-	public String finalize(HttpSession session, RedirectAttributes redir){
+	public String finalize(HttpSession session, RedirectAttributes redir,
+				@RequestParam String feedback){
 		
 		
 		String candidateId = (String) session.getAttribute("candidateId");
@@ -198,6 +200,7 @@ public class CandidateController {
 		Candidate candidate = candidateRepository.findByCandidateId(c.getCandidateId()).get(0);
 		
 		candidate.setCompleted(true);
+		candidate.setFeedback(feedback);
 		
 		candidateRepository.save(candidate);
 		

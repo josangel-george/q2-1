@@ -22,6 +22,7 @@ public class Candidate {
 	private String name;
 	
 	private String dob;
+	private String gender;
 	private String stream;
 	
 	private Date activeStartTime;
@@ -33,6 +34,7 @@ public class Candidate {
 	private LinkedHashMap<Integer, Integer> questionSequence;
 	
 	private boolean completed;
+	private String feedback;
 	
 	private List<String> candidateIPs;
 	private List<Date> loginTimes;
@@ -151,5 +153,21 @@ public class Candidate {
 
 	public void setLoginTimes(List<Date> loginTimes) {
 		this.loginTimes = loginTimes;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
 	}
 }

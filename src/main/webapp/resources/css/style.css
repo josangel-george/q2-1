@@ -124,9 +124,11 @@ img.question-image{display: block; height: 250px; width: auto; padding: 20px;}
 
 .instrictions{width: calc(100% - 10px); margin: auto;}
 
-.finalize-test-btn{margin: auto; display: block; margin-top: 30px;}
+.finalize-test-btn{margin: auto; display: block; margin-top: 15px;}
 form.finalize-test{margin-top: 150px;}
 .finalized{display: block; margin: auto; margin-top: 250px; width: 100%;}
 .test-completed{font-size: 54px; color: #3f51b5; font-weight: bold; text-align: center; width: 100%;}
 
 form.finalize-test pre{text-align: center;}
+
+.feedback{z-index: 99; position: relative; display: block; margin: auto; width: 400px; height: 100px;}

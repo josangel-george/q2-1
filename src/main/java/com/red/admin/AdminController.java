@@ -24,9 +24,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.red.candidate.Candidate;
 import com.red.candidate.CandidateRepository;
+import com.red.candidate.CandidateService;
 import com.red.question.QuestionService;
 
 @Controller
@@ -41,6 +43,9 @@ public class AdminController {
 	
 	@Autowired
 	private QuestionService questionService;
+	
+	@Autowired
+	private CandidateService candidateService;
 	
 	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 
@@ -229,6 +234,26 @@ public class AdminController {
 		}
 		
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value = "candidate/", method = RequestMethod.GET)
+	public String adminLogout(HttpSession session, RedirectAttributes redir,
+			ModelMap model){
+		
+		// find the user from session
+		String candidateId = candidateService.verifySession(session);
+		if(candidateId.equals("SESSION_EXPIRED")){
+			redir.addFlashAttribute("expiryMessage", 
+					"Your Session has expired. All your progress have been saved.");
+			return "redirect:/finalize";
+		}
+		
+		List<Candidate> candidates = candidateRepository.findAll();
+		
+		model.put("candidates", candidates);
+		
+		return "admin/candidate";
 	}
 	
 	@RequestMapping("logout")

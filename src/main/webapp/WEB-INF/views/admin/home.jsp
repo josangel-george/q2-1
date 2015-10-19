@@ -24,6 +24,7 @@
 	<a href="<c:url value='/admin/home'/>" class="active">Admin Home</a>
 	<a href="<c:url value='/admin/stats'/>">Admin Stats</a>
 	<a href="<c:url value='/admin/question/'/>">Question Home</a>
+	<a href="<c:url value='/admin/candidate/'/>">Candidate Home</a>
 	<a href="download">
 		Download Stats
 	</a>

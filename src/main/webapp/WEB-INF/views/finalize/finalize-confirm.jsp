@@ -33,6 +33,8 @@
 ${expiryMessage}
 By clicking the "SUBMIT TEST" button you agree that your test is completed.
 Upon submission, no more further updates will be allowed.</pre>
+		<textarea class="feedback" type="text" name="feedback" 
+					placeholder="Kindly share your thoughts on the test [optional]."></textarea>
 		<input type="submit" value="Submit Test"
 			class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent finalize-test-btn"/>
 	</form:form>
