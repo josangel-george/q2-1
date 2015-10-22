@@ -75,7 +75,7 @@ pre.block{display: block;}
 	    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);}
 .question-option{width: 600px;}
 
-.page-nav{margin-top: 0px;}
+.page-nav{margin-top: 36px;}
 .page-nav *{display: inline-block;}
 .page-nav a {text-decoration: none; position: relative;}
 .page-nav a:hover{text-decoration: underline;}
@@ -83,14 +83,15 @@ pre.block{display: block;}
 .page-nav ul {line-height: 1.5; margin: 0;}
 .page-nav li.active a{color: white}
 .page-nav li.active{border: 1px solid #3F51B5; background: #3F51B5;}
-.page-nav .current-time{display: block; text-align: right; color: #bdbdbd; font-size: 11px;}
+
+#timer-outer{left: 50%; position:absolute; color: rgba(255,255,255,.7); margin-top: 8px;}
 
 .attempt-summary-entry{padding-right: 10px; display: inline-block;}
 .exam-header{width: calc(100% - 250px); margin: auto;}
 .exam-header > .info{padding-left: 20px;}
 .exam-header > .info * {padding: 0; margin: 0;}
 .exam-header > .info strong{margin-right: 10px;}
-.exam-header > .info .blue-text.hilight{padding: 2px;}
+.exam-header > .info .blue-text.hilight{padding: 2px 10px;}
 .exam-header > .info{min-height: 0; width: 460px; font-size: 14px; margin-bottom: 10px; padding: 12px;
 		    padding: 8px 12px;
 		box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);}
@@ -124,11 +125,13 @@ img.question-image{display: block; height: 250px; width: auto; padding: 20px;}
 
 .instrictions{width: calc(100% - 10px); margin: auto;}
 
-.finalize-test-btn{margin: auto; display: block; margin-top: 15px;}
+.finalize-test-btn{margin: auto; display: block;}
 form.finalize-test{margin-top: 150px;}
 .finalized{display: block; margin: auto; margin-top: 250px; width: 100%;}
 .test-completed{font-size: 54px; color: #3f51b5; font-weight: bold; text-align: center; width: 100%;}
 
 form.finalize-test pre{text-align: center;}
 
-.feedback{z-index: 99; position: relative; display: block; margin: auto; width: 400px; height: 100px;}
+.feedback{z-index: 99; position: relative; display: block; margin: auto; width: 400px;}
+.feedback  .mdl-textfield__label{color: rgba(0,0,0,.5);}
+.feedback .mdl-textfield__input{border: 1px solid rgba(0,0,0,.12); height: 95px;}

@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="<c:url value='/resources/css/material.css'/>">
 	<link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
 	<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/jquery.countdown.js'/>"></script>
 	<script src="<c:url value='/resources/js/material.js'/>"></script>
 	<script src="<c:url value='/resources/js/script.js'/>"></script>
 	<!-- Latest compiled and minified JavaScript -->
@@ -26,6 +27,8 @@
 	<!-- Common code -->
 	<header>
 		<a class="navbar-brand" href="#">Mytrah Assesment Test</a>
+		<input type="hidden" value="${expiryTime}" id="expiryTime"/>
+		<div id="timer-outer">Time Remaining: <p id="timer"></p></div>
 		<a	href="<c:url value='/finalize'/>"
 			 class="mdl-button mdl-js-button mdl-js-ripple-effect exam-finalize">
 		  SUBMIT
@@ -59,8 +62,6 @@
 			
 			<!-- Pagination -->
 			<nav class="pull-right inline page-nav">
-			  <p class="current-time">
-			  	Session Expiry: <b>${expiryTime}</b> | Current Server Time: <b>${currentTime}</b></p>
 			  <ul class="pagination">
 			    <li>
 			      <div class="mdl-tooltip" for="prevPage">Previous Page</div>

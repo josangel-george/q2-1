@@ -106,8 +106,8 @@ public class ExamController {
 		
 		Instant expirtyInstant = candidate.getActiveStartTime().toInstant().plusMillis(SESSION_EXPIRY_TIME);
 		Date expiryDate = Date.from(expirtyInstant);
-		String expirtyTime = new SimpleDateFormat("HH:mm:ss").format(expiryDate);
-		String currentTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
+		String expirtyTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(expiryDate);
+		String currentTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
 		
 		// send questions to user
 		model.put("questions", subQns);

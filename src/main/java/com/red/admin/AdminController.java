@@ -116,7 +116,8 @@ public class AdminController {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Gender,Stream,Completed,")
 			.append("Correct Answers,APTI,GK,Stream,")
-			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt,Answers [qId vs T/F]");
+			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt,")
+			.append("Answers [qId - Correct Ans - T/F - Answer]");
 		
 		sb.append("<br>");
 		
@@ -188,7 +189,8 @@ public class AdminController {
 
 			sb.append(" [").append(questionId).append("-")
 				.append(correctAns).append("-")
-				.append(ansCorrect).append("] ");
+				.append(ansCorrect).append("-")
+				.append(answer).append("] ");
 		}
 		
 		return sb.toString();
@@ -208,7 +210,8 @@ public class AdminController {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Gender,Stream,Completed,")
 			.append("Correct Answers,APTI,GK,Stream,")
-			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt,Answers [qId vs T/F]");
+			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt,")
+			.append("Answers [qId - Correct Ans - T/F - Answer]");
 		
 		sb.append("\r\n");
 		

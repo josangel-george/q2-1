@@ -79,5 +79,12 @@
     			el.removeClass("blue");
     		}
     	}
+    	
+    	
+    	// ==================== Timer
+    	var targetTime = $("#expiryTime").val();
+    	$("#timer").countdown(targetTime, function(e){
+    		$(this).html(e.strftime('%H:%M:%S'));
+    	});
     });
 })();
