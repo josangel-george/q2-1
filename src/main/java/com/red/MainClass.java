@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -37,16 +38,29 @@ public class MainClass {
         ApplicationContext ctx = 
         			SpringApplication.run(MainClass.class, args);
         
-        CandidateRepository cRepo = ctx.getBean("candidateRepository", CandidateRepository.class);
-        System.out.println(cRepo.findAll());
-        
         QuestionRepository qRepo = ctx.getBean("questionRepository", QuestionRepository.class);
         
         /** Populate the allQuestions field in Question Cache */
         populateQuestionCache(qRepo);
+        
+        CandidateRepository cRepo = ctx.getBean("candidateRepository", CandidateRepository.class);
+        System.err.println("\nCandidate Count: " + cRepo.findAll().size());
+        
+        Scanner in = new Scanner(System.in);
+        
+        boolean status = true;
+        while(status){
+        	if(in.nextLine().equals("C")){
+        		populateQuestionCache(qRepo);
+        		System.err.println("\nQuestions re-added to cache.");
+        	}
+        }
+        in.close();
     }
     
     private static void populateQuestionCache(QuestionRepository qRepo) {
+    	
+    	QuestionCache.setCacheLock(true);
 
     	List<Question> allQuestions = qRepo.findAll();
     	
@@ -79,9 +93,11 @@ public class MainClass {
     	QuestionCache.setAllQuestions(allQuestions);
     	QuestionCache.setQuestionPerStream(questionPerStream);
     	QuestionCache.setQuestionById(questionById);
+    	
+    	QuestionCache.setCacheLock(false);
 	}
     
-	public static void populateQuestions(QuestionRepository qRepo){
+	public static void populateTestQuestions(QuestionRepository qRepo){
     	
 		if(qRepo.findAll().size() > 0){
 			return;

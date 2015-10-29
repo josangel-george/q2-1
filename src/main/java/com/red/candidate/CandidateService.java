@@ -60,7 +60,7 @@ public class CandidateService {
 		
 		// if no user in session
 		if(candidateId == null){
-			return "NULL";
+			return "NOT_LOGGED_IN";
 		}
 		
 		// If no user in DB which matches that in session!

@@ -10,6 +10,13 @@ Put finalize-confirm page content in card
 Duplicate navigation in bottom of pge 
 verify sysouts logs...
 
+auto hide the saved message
+append new question level messages rather than clearing
+add tests
+make pagination link in full li rather than anchor alone
+remove repo calls from controller
+Make admin stats to a Table
+
 
 DONE =========================================================================
 // Aux function

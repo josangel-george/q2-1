@@ -37,7 +37,7 @@ Upon submission, no more further updates will be allowed.</pre>
 		<div class="mdl-textfield mdl-js-textfield feedback">
 			<textarea class="mdl-textfield__input" type="text" name="feedback" 
 						id="candidateFeedback"></textarea>
-		    <label class="mdl-textfield__label" for="candidateFeedback">Kindly share your thoughts on the test [optional].</label>
+		    <label class="mdl-textfield__label" for="candidateFeedback">Kindly share your thoughts on the test.</label>
 		</div>
   
 		<input type="submit" value="Submit Test"

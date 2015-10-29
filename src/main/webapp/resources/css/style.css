@@ -1,6 +1,7 @@
 @CHARSET "ISO-8859-1";
 
 html,body{font-family:"Roboto", "Helvetica","Arial",sans-serif;}
+body{min-height: inherit;}
 
 div.bg{background-image: url("/resources/image/logo.jpg");
 	    background-repeat: no-repeat;
@@ -84,7 +85,7 @@ pre.block{display: block;}
 .page-nav li.active a{color: white}
 .page-nav li.active{border: 1px solid #3F51B5; background: #3F51B5;}
 
-#timer-outer{left: 50%; position:absolute; color: rgba(255,255,255,.7); margin-top: 8px;}
+#timer-outer{left: calc(50% - 80px); position:absolute; color: rgba(255,255,255,.7); margin-top: 8px;}
 
 .attempt-summary-entry{padding-right: 10px; display: inline-block;}
 .exam-header{width: calc(100% - 250px); margin: auto;}

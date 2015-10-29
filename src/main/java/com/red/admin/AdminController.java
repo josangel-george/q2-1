@@ -61,7 +61,6 @@ public class AdminController {
 		String userId = admin.getUserId();
 		String pass = admin.getPass();
 		
-		log.info("Login Attempt: " + userId + "-" + pass.length());
 		String ip = request.getLocalAddr();
 		
 		if(userId.equals("thalaiva") && pass.equals("ilayathalapathi05$")){
@@ -72,7 +71,7 @@ public class AdminController {
 			return "redirect:/admin/home";
 		} else {
 			
-			log.info("Login Failure. User: " + userId + " IP:" + ip);
+			log.info("Admin Login Failure. User: " + userId + " IP:" + ip + "-" + pass.length());
 			return "redirect:/admin/login";
 		}
 	}

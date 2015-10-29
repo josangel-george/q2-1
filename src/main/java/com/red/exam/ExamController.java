@@ -58,7 +58,7 @@ public class ExamController {
 			return "redirect:/finalize";
 		}
 		if(!verifyReturn(candidateId)){
-			redir.addFlashAttribute("msg", "User not valid. Please register. "  + candidateId);
+			redir.addFlashAttribute("msg", "User not valid. Please register. ERROR: "  + candidateId);
 			return "redirect:/register";
 		}
 		
@@ -98,7 +98,7 @@ public class ExamController {
 		String msg = new StringBuilder().append("Inside ").append(pageNo)
 										.append(" page. Candidate: ")
 										.append(candidate.getCandidateId())
-										.append("Showing ").append(firstQn)
+										.append(" Showing ").append(firstQn)
 										.append(" to ").append(lastQn)
 										.append("of").append(allQns.size())
 										.toString();
@@ -126,14 +126,14 @@ public class ExamController {
 	// ===================================================================
 	
 	@RequestMapping("/saveProgress/{questionNo}/{option}")
-	public ResponseEntity<Void> saveProgreess(@PathVariable int questionNo,
+	public ResponseEntity<String> saveProgreess(@PathVariable int questionNo,
 					@PathVariable String option,
 					HttpSession session){
 		
 		// find the user from session
 		String candidateId = candidateService.verifySession(session);
 		if(!verifyReturn(candidateId)){
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(candidateId, HttpStatus.UNAUTHORIZED);
 		}
 		
 		Candidate candidate = candidateRepository.findByCandidateId(candidateId).get(0);
@@ -239,7 +239,7 @@ public class ExamController {
 	
 	private boolean verifyReturn(String msg){
 		
-		if(msg.equals("NULL") || msg.equals("NOT_FOUND") || msg.equals("SESSION_EXPIRED") 
+		if(msg.equals("NOT_LOGGED_IN") || msg.equals("NOT_FOUND") || msg.equals("SESSION_EXPIRED") 
 					|| msg.equals("ALREADY_SUBMITTED")){
 			return false;
 		} else {

@@ -30,8 +30,10 @@
     			$(statusTextId).text("Saved " + optionMap(optionSelected));
     			$(statusTextId).addClass("success");
 				$(statusTextId).removeClass("warning");
-    		}).fail(function(){
+    		}).fail(function(response){
+    			console.log(response);
     			$(statusTextId).text("Not Saved");
+    			$(statusTextId).attr("title", response.responseText);
     			$(statusTextId).addClass("warning");
 				$(statusTextId).removeClass("success");
     		})

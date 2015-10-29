@@ -13,6 +13,8 @@ public class QuestionCache {
 	/** questionId vs Question*/
 	private static Map<Integer, Question> questionById;
 	
+	private static boolean cacheLock = false;
+	
 	
 	public static List<Question> getAllQuestions(){
 		
@@ -37,5 +39,13 @@ public class QuestionCache {
 
 	public static void setQuestionById(Map<Integer, Question> questionById) {
 		QuestionCache.questionById = questionById;
+	}
+
+	public static boolean isCacheLock() {
+		return cacheLock;
+	}
+
+	public static void setCacheLock(boolean cacheLock) {
+		QuestionCache.cacheLock = cacheLock;
 	}
 }

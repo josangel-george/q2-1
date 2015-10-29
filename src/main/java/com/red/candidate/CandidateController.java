@@ -90,6 +90,7 @@ public class CandidateController {
 			if(!c3.getName().equals(name)){
 				String msg = "Id already exist, But name not matching. unable to recover previous progress";
 				redirModel.addFlashAttribute("msg", msg);
+				redirModel.addFlashAttribute("candidate", candidate);
 				return "redirect:/register";
 			}
 		}
@@ -99,13 +100,13 @@ public class CandidateController {
 		
 		if (candidates.size() > 0) {
 			
-			log.info("User already exist. Not adding a new user. Loggin in.");
+			log.info("User already exist. Loggin in." + candidate.getCandidateId() + " - " + candidate.getName());
 			String msg = "User found in DB. Recovering previous progress.";
 			redirModel.addFlashAttribute("msg", msg);
 			
 			Candidate c = candidates.get(0);
 			
-			// update login timestamps and ip addresses
+			// update login timestamps and IP addresses
 			List<Date> times = c.getLoginTimes();
 			if(times != null){
 				times = new ArrayList<>();
@@ -124,7 +125,7 @@ public class CandidateController {
 			
 		} else {
 			
-			log.info("User is new. Adding new user to db.");
+			log.info("New User. Adding to db. " + candidate);
 			
 			// generate new questionSequence [Map<Integer, Integer> qSeq]
 			LinkedHashMap<Integer, Integer> qSeq = questionService.getQuestionSequence(candidate.getStream());
@@ -214,7 +215,7 @@ public class CandidateController {
 	/** true if user valid else false */
 	private boolean verifyReturn(String msg){
 		
-		if(msg.equals("NULL") || msg.equals("NOT_FOUND") || msg.equals("SESSION_EXPIRED") 
+		if(msg.equals("NOT_LOGGED_IN") || msg.equals("NOT_FOUND") || msg.equals("SESSION_EXPIRED") 
 					|| msg.equals("ALREADY_SUBMITTED")){
 			return false;
 		} else {
