@@ -41,12 +41,12 @@
 			<div class="mdl-textfield mdl-js-textfield  block mdl-cell mdl-cell--12-col-desktop">
 			  <form:input path="name" class="mdl-textfield__input" required="required"/>
 		      <label class="mdl-textfield__label" for="name">Name...</label>
-		      <div class="mdl-tooltip" for="name">Please enter your name.</div>
+		      <div class="mdl-tooltip" for="name">Please enter your full name.</div>
 		    </div>
 		    <div class="mdl-textfield mdl-js-textfield  block mdl-cell mdl-cell--12-col-desktop">
 		      <form:input path="candidateId" class="mdl-textfield__input" required="required"/>
-		      <label class="mdl-textfield__label" for="candidateId">ID...</label>
-		      <div class="mdl-tooltip" for="candidateId">Please enter ID.</div>
+		      <label class="mdl-textfield__label" for="candidateId">College ID #</label>
+		      <div class="mdl-tooltip" for="candidateId">Please enter College ID #.</div>
 		    </div>
 		    <div class="mdl-textfield mdl-js-textfield  block mdl-cell mdl-cell--12-col-desktop">
 		      <form:input type="date" path="dob" required="required" class="red"/>

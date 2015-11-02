@@ -1,23 +1,16 @@
-ToDO
-- verify questions
-- Modify instrictions and disclaimer
-
+TODO
 Fallbacks ===
 - power backup
 
 Other ===========
+x Duplicate navigation in bottom of pge 
+x make pagination link in full li rather than anchor alone
 Put finalize-confirm page content in card
-Duplicate navigation in bottom of pge 
-verify sysouts logs...
-
 auto hide the saved message
 append new question level messages rather than clearing
 add tests
-make pagination link in full li rather than anchor alone
 remove repo calls from controller
-Make admin stats to a Table
-
-get the start time from client system while user registers.
+<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
 
 
 DONE =========================================================================
@@ -58,3 +51,8 @@ x add Tag line
 x logo
 x Timer?
 x confirm the expiration time
+x verify sysouts logs...
+x Make admin stats to a Table | no since avoid screen time
+x get the time from client system while user register | not needed. all times server time
+x verify questions
+x Modify instrictions and disclaimer

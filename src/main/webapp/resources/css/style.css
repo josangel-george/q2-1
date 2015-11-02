@@ -32,7 +32,7 @@ table.border th{border: 1px solid gray;}
 
 @media (max-width: 1080px){
 	.exam-header{width: calc(100% - 20px) !important;}
-	.question{width: calc(100% - 20px) !important; }
+	.main-card{width: calc(100% - 20px) !important; }
 }
 
 .border{border: 1px solid gray;}
@@ -57,7 +57,7 @@ a.active{background: #3F51B5; color: white; font-weight: bold;}
 .form-form textarea{width: 500px; height: 200px;}
 
 /* --- header --- */
-header{width: 100%; border: 1px solid #3F51B5; height: 35px; top: 0; position: fixed; background: #3F51B5;
+header{width: 100%; height: 35px; top: 0; position: fixed; background: #3F51B5;
 	z-index: 100;
 	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);}
 header .navbar-brand{margin: 8px 32px; position: fixed; font-size: 21px; text-decoration: none; color: white;}
@@ -71,21 +71,20 @@ pre.block{display: block;}
 .question-text > pre,
 .question-text > strong,
 .question-text > i {font-size: 16px;}
-.question{width: calc(100% - 250px); min-height: 0px; margin-bottom: 16px;
+.question{width: calc(100% - 250px); margin-bottom: 16px;
 		padding: 15px; background: transparent;
 	    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);}
 .question-option{width: 600px;}
 
 .page-nav{margin-top: 36px;}
 .page-nav *{display: inline-block;}
-.page-nav a {text-decoration: none; position: relative;}
+.page-nav a {text-decoration: none; position: relative; padding: 2px 7px;}
 .page-nav a:hover{text-decoration: underline;}
-.page-nav ul > li{padding: 2px 7px;}
 .page-nav ul {line-height: 1.5; margin: 0;}
 .page-nav li.active a{color: white}
 .page-nav li.active{border: 1px solid #3F51B5; background: #3F51B5;}
 
-#timer-outer{left: calc(50% - 80px); position:absolute; color: rgba(255,255,255,.7); margin-top: 8px;}
+#timer-outer{left: calc(50% - 80px); position:absolute; color: rgba(255, 255, 255, 0.5); margin-top: 8px;}
 
 .attempt-summary-entry{padding-right: 10px; display: inline-block;}
 .exam-header{width: calc(100% - 250px); margin: auto;}
@@ -101,7 +100,7 @@ pre.block{display: block;}
 img.question-image{display: block; height: 250px; width: auto; padding: 20px;}
 
 
-/* Registeration from */
+/* Registration from */
 .text-gray{color: rgba(0,0,0, 0.26);}
 #registerCandidate input.blue[type=date],
 #registerCandidate select.blue{border: 0px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); padding: 2px;	width: 100%;}
@@ -123,6 +122,9 @@ img.question-image{display: block; height: 250px; width: auto; padding: 20px;}
 .mdl-cell{margin: -4px;}
 .mdl-card__title{padding: 10px 2px;}
 
+.main-card{width: calc(100% - 250px); min-height: 0px;}
+.bottom-nav{display:block;}
+.bottom-nav a{font-size: 11px;}
 
 .instrictions{width: calc(100% - 10px); margin: auto;}
 

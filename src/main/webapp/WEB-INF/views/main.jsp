@@ -78,7 +78,7 @@
 			    </c:forEach>
 			    <li>
 			       <div class="mdl-tooltip" for="nextPage">Next Page</div>
-			       <c:if test="${currentPage < 10}">
+			       <c:if test="${currentPage < pageCount}">
 				      <a href="<c:url value='/exam/${currentPage + 1}'/>" 
 				      			id="nextPage" aria-label="Next">
 				        <span aria-hidden="true">&gt;</span>
@@ -92,7 +92,7 @@
 		<div class="question-body">
 			<c:forEach items="${questions}" var="question" varStatus="qCtr">
 			
-			<div class="question mdl-grid mdl-card mdl-shadow--2dp">
+			<div class="question main-card mdl-grid mdl-card mdl-shadow--2dp">
 				<p class="mdl-cell  mdl-cell--1-col" id="saveStatus_${question.key}"></p>
 				<div class="mdl-cell">
 					<div class="question-text ">
@@ -127,6 +127,20 @@
 				</div>
 			</div>
 			</c:forEach>
+			<div class="main-card bottom-nav mdl-grid mdl-card">
+				
+				<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+					href="<c:url value='/exam/${currentPage <= 1 ? 1 : currentPage - 1 }'/>"
+					${currentPage <= 1? 'disabled="disabled"' : ''}>
+					&lt;  Previous Page
+				</a>
+				
+				<a class="mdl-button mdl-js-button mdl-button--raised pull-right mdl-js-ripple-effect"
+					href="<c:url value='/exam/${currentPage >= pageCount? pageCount : currentPage + 1}'/>"
+					${currentPage >= pageCount? 'disabled="disabled"' : ''}>
+				  	Next Page  &gt;
+				</a>
+			</div>
 		</div>
 	</div>
 
