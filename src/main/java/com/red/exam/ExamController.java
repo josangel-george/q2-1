@@ -98,9 +98,9 @@ public class ExamController {
 		String msg = new StringBuilder().append("Inside ").append(pageNo)
 										.append(" page. Candidate: ")
 										.append(candidate.getCandidateId())
-										.append(" Showing ").append(firstQn)
-										.append(" to ").append(lastQn)
-										.append("of").append(allQns.size())
+										//.append(" Showing ").append(firstQn)
+										//.append(" to ").append(lastQn)
+										//.append("of").append(allQns.size())
 										.toString();
 		log.info(msg);
 		

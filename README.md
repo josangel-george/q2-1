@@ -17,6 +17,8 @@ make pagination link in full li rather than anchor alone
 remove repo calls from controller
 Make admin stats to a Table
 
+get the start time from client system while user registers.
+
 
 DONE =========================================================================
 // Aux function

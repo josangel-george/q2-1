@@ -54,7 +54,7 @@
 				<td>${c.stream}</td>
 				<td>${c.completed}</td>
 				<td>${c.feedback}</td>
-				<td><!-- candidateIPs not working -->-</td>
+				<td>${c.candidateIPs}</td>
 				<td>${c.loginTimes}</td>
 				<td>${c.activeStartTime}</td>
 				<td>${c.correctAnswers}</td>
