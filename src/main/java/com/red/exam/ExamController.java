@@ -109,12 +109,15 @@ public class ExamController {
 		String expirtyTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(expiryDate);
 		String currentTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
 		
+		long timeRemaining = expiryDate.getTime() - new Date().getTime();
+		
 		// send questions to user
 		model.put("questions", subQns);
 		model.put("currentPage", pageNo);
 		model.put("attemptSlice", attemptSlice);
 		model.put("expiryTime", expirtyTime);
 		model.put("currentTime", currentTime);
+		model.put("timeRemaining", timeRemaining);
 		model.put("optionSelected", candidate.getAttempts());
 		model.put("pageCount", 10);		// No of pagination pages to be shown
 		

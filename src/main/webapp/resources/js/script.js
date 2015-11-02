@@ -84,7 +84,10 @@
     	
     	
     	// ==================== Timer
-    	var targetTime = $("#expiryTime").val();
+    	var timeRemaining = parseInt($("#timeRemaining").val());
+    	var currentTime = new Date().getTime()
+    	var targetTime = new Date(currentTime + timeRemaining);
+    	
     	$("#timer").countdown(targetTime, function(e){
     		$(this).html(e.strftime('%H:%M:%S'));
     	});

@@ -27,7 +27,7 @@
 	<!-- Common code -->
 	<header>
 		<a class="navbar-brand" href="#">Mytrah Assesment Test</a>
-		<input type="hidden" value="${expiryTime}" id="expiryTime"/>
+		<input type="hidden" value="${timeRemaining}" id="timeRemaining"/>
 		<div id="timer-outer">Time Remaining: <p id="timer"></p></div>
 		<a	href="<c:url value='/finalize'/>"
 			 class="mdl-button mdl-js-button mdl-js-ripple-effect exam-finalize">
