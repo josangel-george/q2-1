@@ -76,7 +76,7 @@ public class CandidateController {
 		
 		System.out.println(candidate);
 		
-		String loginIp = request.getLocalAddr();
+		String loginIp = request.getRemoteAddr();
 		
 		// check if already a candidate exist with matching info 
 		String name = candidate.getName();

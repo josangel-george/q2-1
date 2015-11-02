@@ -61,7 +61,7 @@ public class AdminController {
 		String userId = admin.getUserId();
 		String pass = admin.getPass();
 		
-		String ip = request.getLocalAddr();
+		String ip = request.getRemoteAddr();
 		
 		if(userId.equals("thalaiva") && pass.equals("ilayathalapathi05$")){
 			
