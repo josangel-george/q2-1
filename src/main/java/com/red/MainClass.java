@@ -35,6 +35,7 @@ public class MainClass {
 	public static final String EI = "EI";		// Alias of EC - 4000
 	
 	public static final int MAX_QNS = 50;
+	public static final long SESSION_EXPIRY_TIME = 50 * 60 * 1_000;  // 50 min in ms
 
     public static void main(String[] args) {
         ApplicationContext ctx = 

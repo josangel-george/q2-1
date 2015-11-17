@@ -1,6 +1,6 @@
 package com.red.exam;
 
-import static com.red.candidate.CandidateService.SESSION_EXPIRY_TIME;
+import static com.red.MainClass.SESSION_EXPIRY_TIME;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;

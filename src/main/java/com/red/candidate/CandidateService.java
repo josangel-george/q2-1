@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 import com.red.question.Question;
 import com.red.question.QuestionRepository;
 
+import static com.red.MainClass.SESSION_EXPIRY_TIME;
+
 @Service
 public class CandidateService {
 	
-	 public static final long SESSION_EXPIRY_TIME = 50 * 60 * 1_000;  // 50 min in ms
-
 	@Autowired
 	private CandidateRepository candidateRepository; 
 	
