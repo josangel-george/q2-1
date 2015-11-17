@@ -24,6 +24,7 @@ public class Candidate {
 	private String dob;
 	private String gender;
 	private String stream;
+	private String originalStream;
 	
 	private Date activeStartTime;
 
@@ -44,10 +45,11 @@ public class Candidate {
 	
 	@Override
 	public String toString() {
-		return "Candidate [id=" + id + ", candidateId=" + candidateId + ", name=" + name + ", dob=" + dob + ", stream="
-				+ stream + ", activeStartTime=" + activeStartTime + ", correctAnswers=" + correctAnswers
-				+ ", correctAnswerPerCategory=" + correctAnswerPerCategory + ", questionSequence=" + questionSequence
-				+ ", completed=" + completed + ", candidateIPs=" + candidateIPs + ", loginTimes=" + loginTimes
+		return "Candidate [id=" + id + ", candidateId=" + candidateId + ", name=" + name + ", dob=" + dob + ", gender="
+				+ gender + ", stream=" + stream + ", originalStream=" + originalStream + ", activeStartTime="
+				+ activeStartTime + ", correctAnswers=" + correctAnswers + ", correctAnswerPerCategory="
+				+ correctAnswerPerCategory + ", questionSequence=" + questionSequence + ", completed=" + completed
+				+ ", feedback=" + feedback + ", candidateIPs=" + candidateIPs + ", loginTimes=" + loginTimes
 				+ ", attempts=" + attempts + "]";
 	}
 
@@ -169,5 +171,13 @@ public class Candidate {
 
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
+	}
+
+	public String getOriginalStream() {
+		return originalStream;
+	}
+
+	public void setOriginalStream(String originalStream) {
+		this.originalStream = originalStream;
 	}
 }

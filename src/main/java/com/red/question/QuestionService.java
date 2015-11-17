@@ -24,7 +24,7 @@ public class QuestionService {
 	 *  
 	 * QuestionNo vs Question
 	 * */
-	public LinkedHashMap<Integer, Integer> getQuestionSequence(String string){
+	public LinkedHashMap<Integer, Integer> getQuestionSequence(String stream){
 		
 		// prevent execution if Cache is Locked.
 		while(QuestionCache.isCacheLock());
@@ -34,7 +34,7 @@ public class QuestionService {
 		
 		List<Question> aptitudeQuestions = new ArrayList<>(qPerCat.get("Aptitude"));
 		List<Question> gkQuestions = new ArrayList<>(qPerCat.get("GK"));
-		List<Question> streamQuestions = new ArrayList<>(qPerCat.get(string));
+		List<Question> streamQuestions = new ArrayList<>(qPerCat.get(stream));
 
 		Collections.shuffle(aptitudeQuestions);
 		Collections.shuffle(gkQuestions);
@@ -70,7 +70,7 @@ public class QuestionService {
 			qnCount++;
 		}
 		
-		log.trace("User created: stream: " + string + " -" + questionSequence);
+		log.trace("User created: assigned-stream: " + stream + " - " + questionSequence);
 		
 		return questionSequence;
 	}

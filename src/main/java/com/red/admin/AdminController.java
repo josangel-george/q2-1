@@ -87,7 +87,7 @@ public class AdminController {
 		List<Candidate> candidates = candidateRepository.findAll();
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Gender,Stream,Completed,")
+		sb.append("Candidate ID,Name,DOB,Gender,Stream,Completed,")
 			.append("Correct Answers,APTI,GK,Stream,")
 			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt")
 			.append("<br>");
@@ -113,7 +113,7 @@ public class AdminController {
 		List<Candidate> candidates = candidateRepository.findAll();
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Gender,Stream,Completed,")
+		sb.append("Candidate ID,Name,DOB,Gender,Stream,Completed,")
 			.append("Correct Answers,APTI,GK,Stream,")
 			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt,")
 			.append("Answers [qId - Correct Ans - T/F - Answer]");
@@ -160,7 +160,7 @@ public class AdminController {
 			.append(c.getName()).append(",")
 			.append(c.getDob()).append(",")
 			.append(c.getGender()).append(",")
-			.append(c.getStream()).append(",")
+			.append(c.getOriginalStream()).append(",")
 			.append(c.isCompleted()).append(",")
 			.append(c.getCorrectAnswers()).append(",")
 			.append(aptiCorrect == null ? 0 : aptiCorrect).append(",")
@@ -207,7 +207,7 @@ public class AdminController {
 		List<Candidate> candidates = candidateRepository.findAll();
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("Candidate ID,Name,DOB[yyyy-mm-dd],Gender,Stream,Completed,")
+		sb.append("Candidate ID,Name,DOB,Gender,Stream,Completed,")
 			.append("Correct Answers,APTI,GK,Stream,")
 			.append("Total Attempt,Apti Attemp,GK Attempt,Stream Attempt,")
 			.append("Answers [qId - Correct Ans - T/F - Answer]");

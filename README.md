@@ -3,15 +3,13 @@ Fallbacks ===
 - power backup
 
 Other ===========
-x Duplicate navigation in bottom of pge 
-x make pagination link in full li rather than anchor alone
 Put finalize-confirm page content in card
 auto hide the saved message
 append new question level messages rather than clearing
 add tests
 remove repo calls from controller
 <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
-
+find a good way to handle Aliases
 
 DONE =========================================================================
 // Aux function
@@ -56,3 +54,10 @@ x Make admin stats to a Table | no since avoid screen time
 x get the time from client system while user register | not needed. all times server time
 x verify questions
 x Modify instrictions and disclaimer
+x Duplicate navigation in bottom of pge 
+x make pagination link in full li rather than anchor alone
+
+Procedure to Add Alias =============
+Add stream in main class
+Add the new stream in registration form in CandidateController register GET
+Save stream name from originalStream name in CandidateController register POST

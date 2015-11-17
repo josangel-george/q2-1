@@ -31,6 +31,8 @@ public class MainClass {
 	public static final String EEE = "EEE";			// 5000
 	public static final String CIVIL = "Civil";		// 6000
 	public static final String MECH = "Mechanical";	// 7000
+	public static final String IT = "IT";		// Alias of CS - 3000
+	public static final String EI = "EI";		// Alias of EC - 4000
 	
 	public static final int MAX_QNS = 50;
 

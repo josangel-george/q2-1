@@ -50,10 +50,10 @@
 		    </div>
 		    <div class="mdl-textfield mdl-js-textfield  block mdl-cell mdl-cell--12-col-desktop">
 		      <form:input type="date" path="dob" required="required" class="red"/>
-		      <div class="mdl-tooltip" for="dob">Please select Date of birth.</div>
+		      <div class="mdl-tooltip" for="dob">Please select Date of birth [MM-DD-YYYY]</div>
 		    </div>
 		    <div class="mdl-textfield mdl-js-textfield  block mdl-cell mdl-cell--12-col-desktop">
-				<form:select path="stream" required="required" class="red">
+				<form:select path="originalStream" required="required" class="red">
 					<form:option value="" disabled="disabled"> -- Select Stream -- </form:option>
 					<form:options items="${streams}"></form:options>
 				</form:select>

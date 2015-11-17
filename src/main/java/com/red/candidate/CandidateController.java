@@ -4,6 +4,8 @@ import static com.red.MainClass.CIVIL;
 import static com.red.MainClass.CS;
 import static com.red.MainClass.EC;
 import static com.red.MainClass.EEE;
+import static com.red.MainClass.EI;
+import static com.red.MainClass.IT;
 import static com.red.MainClass.MECH;
 
 import java.util.ArrayList;
@@ -62,7 +64,9 @@ public class CandidateController {
 		streams.put(CS, "CS");
 		streams.put(EEE, "EEE");
 		streams.put(CIVIL, "Civil");
-		streams.put(MECH, "Mechanical");
+		streams.put(MECH, "Mech");
+		streams.put(EI,"E&I");
+		streams.put(IT, "IT");
 		
 		model.put("streams", streams);
 		
@@ -74,7 +78,15 @@ public class CandidateController {
 			Candidate candidate, RedirectAttributes redirModel,
 			HttpServletRequest request){
 		
-		System.out.println(candidate);
+		if(candidate.getOriginalStream().equals(IT)){
+			candidate.setStream(CS);
+		} 
+		else if(candidate.getOriginalStream().equals(EI)){
+			candidate.setStream(EC);
+		}
+		else {
+			candidate.setStream(candidate.getOriginalStream());
+		}
 		
 		String loginIp = request.getRemoteAddr();
 		
@@ -88,6 +100,11 @@ public class CandidateController {
 		if(c2.size() > 0){
 			Candidate c3 = c2.get(0);
 			if(!c3.getName().equals(name)){
+				
+				log.info("Invalid Login. User exist, name not matching: " 
+															+ candidate.getCandidateId()
+															+ "-" + candidate.getName());
+				
 				String msg = "Id already exist, But name not matching. unable to recover previous progress";
 				redirModel.addFlashAttribute("msg", msg);
 				redirModel.addFlashAttribute("candidate", candidate);
@@ -148,7 +165,7 @@ public class CandidateController {
 		
 		session.setAttribute("candidateName", candidate.getName());
 		session.setAttribute("candidateId", candidate.getCandidateId());
-		session.setAttribute("candidateStream", candidate.getStream());
+		session.setAttribute("candidateStream", candidate.getOriginalStream());
 		
 		return "redirect:/exam/1";
 	}

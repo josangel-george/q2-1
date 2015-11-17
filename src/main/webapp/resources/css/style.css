@@ -16,7 +16,7 @@ div.bg{background-image: url("/resources/image/logo.jpg");
 .registration-page date,
 .registration-page select,
 .registration-page input,
-.registration-page label{background: transparent; color: #333; }
+.registration-page label{background: transparent;}
 	            
 .bg-transparent{background: transparent;}
 
