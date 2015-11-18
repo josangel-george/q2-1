@@ -12,7 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Question View</title>
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,400italic,300italic&subset=latin,greek,cyrillic-ext,greek-ext,latin-ext,cyrillic,vietnamese' rel='stylesheet' type='text/css'>
+<!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,400italic,300italic&subset=latin,greek,cyrillic-ext,greek-ext,latin-ext,cyrillic,vietnamese' rel='stylesheet' type='text/css'> -->
 <link rel="stylesheet" href="<c:url value='/resources/css/material.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
 <script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
