@@ -125,14 +125,14 @@ public class CandidateController {
 			
 			// update login timestamps and IP addresses
 			List<Date> times = c.getLoginTimes();
-			if(times != null){
+			if(times == null){
 				times = new ArrayList<>();
 			}
 			times.add(new Date());
 			c.setLoginTimes(times);
 			
 			List<String> ips = c.getCandidateIPs();
-			if(ips != null){
+			if(ips == null){
 				ips = new ArrayList<>();
 			}
 			ips.add(loginIp);
