@@ -204,7 +204,6 @@ public class CandidateController {
 	public String finalize(HttpSession session, RedirectAttributes redir,
 				@RequestParam String feedback){
 		
-		System.err.println(feedback);
 		String candidateId = (String) session.getAttribute("candidateId");
 		if(candidateId == null){
 			
@@ -216,6 +215,8 @@ public class CandidateController {
 		
 		// get the candidate
 		Candidate candidate = candidateRepository.findByCandidateId(c.getCandidateId()).get(0);
+		
+		System.err.println(candidate.getCandidateId() + "::Feedback:: '" + feedback + "'");
 		
 		candidate.setCompleted(true);
 		candidate.setFeedback(feedback);

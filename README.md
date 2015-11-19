@@ -11,6 +11,10 @@ remove repo calls from controller
 <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
 find a good way to handle Aliases
 
+Verify if the 2nd IP is logged correctly..
+Also log IPs for all login attempts
+
+
 DONE =========================================================================
 // Aux function
 x get list of all users currently registered users
