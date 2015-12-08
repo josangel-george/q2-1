@@ -11,8 +11,10 @@ remove repo calls from controller
 <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
 find a good way to handle Aliases
 
-Verify if the 2nd IP is logged correctly..
-Also log IPs for all login attempts
+x Verify if the 2nd IP is logged correctly..
+x Also log IPs for all login attempts
+- Add more details in completed field in admin page, like time remaining
+
 
 
 DONE =========================================================================
